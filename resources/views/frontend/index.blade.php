@@ -238,9 +238,10 @@
             <div class="video-grid">
               @if(isset($videoNews) && $videoNews->count() > 0)
                 @foreach($videoNews as $video)
-                  <article class="video-card" tabindex="0" onclick="openVideoModal('{{ $video->youtube_url }}')" style="cursor: pointer;">
+                  @php $thumbUrl = str_starts_with($video->thumbnail, 'http') ? $video->thumbnail : asset('storage/'.$video->thumbnail); @endphp
+                  <article class="video-card" tabindex="0" onclick="openVideoModal('{{ $video->youtube_url }}', '{{ $thumbUrl }}')" style="cursor: pointer;">
                     <div class="video-thumb">
-                      <img src="{{ str_starts_with($video->thumbnail, 'http') ? $video->thumbnail : asset('storage/'.$video->thumbnail) }}" alt="{{ $video->title }}" />
+                      <img src="{{ $thumbUrl }}" alt="{{ $video->title }}" />
                       <div class="video-play"><div class="video-play-btn"><i class="fa-solid fa-play"></i></div></div>
                       @if($video->duration) <span class="video-duration">{{ $video->duration }}</span> @endif
                     </div>
@@ -260,7 +261,7 @@
           </section>
 
           <!-- Photo Gallery -->
-          <section class="section-wrap">
+          <!-- <section class="section-wrap">
             <div class="section-header">
               <h2 class="section-title">📷 फोटो गैलरी <span class="en">Photo Gallery</span></h2>
               <a href="#" class="view-all">सभी देखें →</a>
@@ -275,7 +276,7 @@
               <div class="gallery-item" tabindex="0"><img src="https://picsum.photos/300/150?random=86" alt="गैलरी" /><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
               <div class="gallery-item" tabindex="0"><img src="https://picsum.photos/300/150?random=87" alt="गैलरी" /><div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div></div>
             </div>
-          </section>
+          </section> -->
 
           <!-- Tags Cloud -->
           <section class="section-wrap">
@@ -321,9 +322,9 @@
 
   <!-- Video Modal -->
   <div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
-    <div style="position:relative; width:90%; max-width:800px; background:#000; border-radius:8px; overflow:hidden; aspect-ratio:16/9;">
+    <div id="videoContainer" style="position:relative; width:90%; max-width:800px; background:#000; border-radius:8px; overflow:hidden; aspect-ratio:16/9; background-position: center; background-size: cover;">
       <button onclick="closeVideoModal()" style="position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.2); border:none; color:#fff; font-size:24px; cursor:pointer; width:40px; height:40px; border-radius:50%; z-index:10;">&times;</button>
-      <iframe id="videoIframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="videoIframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:relative; z-index:5;"></iframe>
     </div>
   </div>
 
@@ -345,9 +346,10 @@ function extractVideoID(url){
     }
     return null;
 }
-function openVideoModal(url) {
+function openVideoModal(url, thumbUrl) {
     var videoId = extractVideoID(url);
     if(videoId) {
+        document.getElementById('videoContainer').style.backgroundImage = "url('" + thumbUrl + "')";
         document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
         document.getElementById('videoModal').style.display = 'flex';
     } else {
