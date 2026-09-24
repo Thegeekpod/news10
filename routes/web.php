@@ -31,25 +31,41 @@ Route::get('/api/stocks', function () {
     return \Illuminate\Support\Facades\Cache::remember('market_stocks_v2', 15, function () {
         try {
             $symbols = '^NSEI,^BSESN,RELIANCE.NS,TCS.NS,HDFCBANK.NS,BHARTIARTL.NS,ICICIBANK.NS,INFY.NS,ITC.NS,SBI.NS,L&TFH.NS';
-            $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
-            $client = new \GuzzleHttp\Client(['cookies' => $cookieJar, 'verify' => false]);
             
-            // Step 1: get cookie
-            $client->get('https://fc.yahoo.com', [
-                'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'],
-                'http_errors' => false
-            ]);
+            // Cache crumb and cookies for 1 hour to prevent IP block
+            $yahooAuth = \Illuminate\Support\Facades\Cache::remember('yahoo_auth', 3600, function() {
+                $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
+                $client = new \GuzzleHttp\Client(['cookies' => $cookieJar, 'verify' => false]);
+                
+                $client->get('https://fc.yahoo.com', [
+                    'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'],
+                    'http_errors' => false
+                ]);
+                
+                $crumbRes = $client->get('https://query1.finance.yahoo.com/v1/test/getcrumb', [
+                    'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)']
+                ]);
+                
+                // Extract cookie string
+                $cookieString = '';
+                foreach ($cookieJar->toArray() as $cookie) {
+                    $cookieString .= $cookie['Name'] . '=' . $cookie['Value'] . '; ';
+                }
+                
+                return [
+                    'crumb' => (string) $crumbRes->getBody(),
+                    'cookie' => $cookieString
+                ];
+            });
             
-            // Step 2: get crumb
-            $crumbRes = $client->get('https://query1.finance.yahoo.com/v1/test/getcrumb', [
-                'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)']
-            ]);
-            $crumb = (string) $crumbRes->getBody();
-            
-            // Step 3: fetch data with crumb
+            $client = new \GuzzleHttp\Client(['verify' => false]);
             $encodedSymbols = urlencode($symbols);
-            $quoteRes = $client->get("https://query1.finance.yahoo.com/v7/finance/quote?symbols={$encodedSymbols}&crumb={$crumb}", [
-                'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)']
+            
+            $quoteRes = $client->get("https://query1.finance.yahoo.com/v7/finance/quote?symbols={$encodedSymbols}&crumb={$yahooAuth['crumb']}", [
+                'headers' => [
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                    'Cookie' => $yahooAuth['cookie']
+                ]
             ]);
             
             return json_decode((string)$quoteRes->getBody(), true);
