@@ -158,7 +158,7 @@
         <button class="search-btn" id="search-toggle" aria-label="Search">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-        <button class="btn-subscribe" id="subscribe-btn" onclick="document.querySelector('.newsletter-section')?.scrollIntoView({behavior: 'smooth'})">🔔 सदस्यता लें</button>
+        <button class="btn-subscribe" id="subscribe-btn" onclick="document.getElementById('subscribeModal').style.display='flex'">🔔 सदस्यता लें</button>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -304,6 +304,25 @@
 </button>
 
 <!-- ════════════════════════════════════════
+     MODALS
+════════════════════════════════════════ -->
+<!-- Subscribe Modal -->
+<div id="subscribeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+  <div style="position:relative; width:90%; max-width:450px; background:var(--white, #fff); border-radius:12px; padding:30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    <button onclick="document.getElementById('subscribeModal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; color:var(--dark, #111); font-size:24px; cursor:pointer;">&times;</button>
+    <div style="text-align:center; margin-bottom:20px;">
+        <h2 style="font-size:24px; margin-bottom:10px; color:var(--red, #c0392b);">📧 सदस्यता लें</h2>
+        <p style="font-size:15px; color:var(--dark-3, #333);">हमारे न्यूज़लेटर की सदस्यता लें और हर सुबह देश-दुनिया की महत्वपूर्ण खबरें सबसे पहले पाएँ। बिल्कुल निःशुल्क!</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:15px;">
+        <input type="email" id="nl-modal-email" placeholder="आपका ईमेल पता लिखें..." style="padding:12px 15px; border:1px solid #ccc; border-radius:6px; font-size:15px; width:100%; outline:none; color: #111; background: #fff;" />
+        <button id="nl-modal-btn" style="padding:12px 15px; background:var(--red, #c0392b); color:#fff; border:none; border-radius:6px; font-size:16px; font-weight:bold; cursor:pointer; width:100%;">सदस्यता लें →</button>
+    </div>
+    <p style="font-size:12px; color:var(--gray, #777); text-align:center; margin-top:15px;">* हम आपकी जानकारी किसी के साथ साझा नहीं करते।</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════ -->
 <script>
@@ -362,7 +381,45 @@
     });
   }
 
-  /* ── Newsletter Form AJAX ── */
+  /* ── Newsletter Modal Form AJAX ── */
+  const nlModalBtn   = document.getElementById('nl-modal-btn');
+  const nlModalEmail = document.getElementById('nl-modal-email');
+  if (nlModalBtn && nlModalEmail) {
+    nlModalBtn.addEventListener('click', async () => {
+      if (!nlModalEmail.value.includes('@')) {
+        nlModalEmail.style.borderColor = '#e74c3c';
+        return;
+      }
+      nlModalEmail.style.borderColor = '';
+      nlModalBtn.textContent = 'प्रतीक्षा करें...';
+      try {
+        const res = await fetch('{{ route("newsletter.subscribe") }}', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ email: nlModalEmail.value })
+        });
+        if (res.ok) {
+          nlModalBtn.textContent = '🎉 धन्यवाद! सदस्यता पूरी हुई';
+          nlModalBtn.disabled = true;
+          nlModalEmail.disabled = true;
+          setTimeout(() => {
+              document.getElementById('subscribeModal').style.display = 'none';
+          }, 2000);
+        } else {
+          nlModalBtn.textContent = 'सदस्यता लें →';
+          alert('कृपया सही ईमेल दर्ज करें।');
+        }
+      } catch (err) {
+        nlModalBtn.textContent = 'सदस्यता लें →';
+      }
+    });
+  }
+
+  /* ── Newsletter Footer Form AJAX ── */
   const nlBtn   = document.getElementById('nl-btn');
   const nlEmail = document.getElementById('nl-email');
   if (nlBtn && nlEmail) {
