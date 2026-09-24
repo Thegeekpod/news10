@@ -75,30 +75,43 @@
     <span class="ticker-label">⚡ ताज़ा</span>
     <div class="ticker-content">
       <div class="ticker-inner" id="ticker">
-        @if(isset($globalBreakingTickers) && $globalBreakingTickers->count() > 0)
-          @foreach($globalBreakingTickers as $ticker)
-            @if($ticker->link_url)
-                <a href="{{ $ticker->link_url }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $ticker->ticker_text }}</a>
-            @else
-                <span class="ticker-item">{{ $ticker->ticker_text }}</span>
-            @endif
-          @endforeach
-          <!-- duplicate for seamless loop -->
-          @foreach($globalBreakingTickers as $ticker)
-            @if($ticker->link_url)
-                <a href="{{ $ticker->link_url }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $ticker->ticker_text }}</a>
-            @else
-                <span class="ticker-item">{{ $ticker->ticker_text }}</span>
-            @endif
-          @endforeach
-        @elseif(isset($globalBreakingPosts) && $globalBreakingPosts->count() > 0)
-          @foreach($globalBreakingPosts as $bPost)
-            <a href="{{ route('post.show', $bPost->slug) }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $bPost->title }}</a>
-          @endforeach
-          <!-- duplicate for seamless loop -->
-          @foreach($globalBreakingPosts as $bPost)
-            <a href="{{ route('post.show', $bPost->slug) }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $bPost->title }}</a>
-          @endforeach
+        @php
+            $hasTickers = isset($globalBreakingTickers) && $globalBreakingTickers->count() > 0;
+            $hasPosts = isset($globalBreakingPosts) && $globalBreakingPosts->count() > 0;
+        @endphp
+
+        @if($hasTickers || $hasPosts)
+          <!-- Original List -->
+          @if($hasTickers)
+            @foreach($globalBreakingTickers as $ticker)
+              @if($ticker->link_url)
+                  <a href="{{ $ticker->link_url }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $ticker->ticker_text }}</a>
+              @else
+                  <span class="ticker-item">{{ $ticker->ticker_text }}</span>
+              @endif
+            @endforeach
+          @endif
+          @if($hasPosts)
+            @foreach($globalBreakingPosts as $bPost)
+              <a href="{{ route('post.show', $bPost->slug) }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $bPost->title }}</a>
+            @endforeach
+          @endif
+
+          <!-- Duplicate for seamless loop -->
+          @if($hasTickers)
+            @foreach($globalBreakingTickers as $ticker)
+              @if($ticker->link_url)
+                  <a href="{{ $ticker->link_url }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $ticker->ticker_text }}</a>
+              @else
+                  <span class="ticker-item">{{ $ticker->ticker_text }}</span>
+              @endif
+            @endforeach
+          @endif
+          @if($hasPosts)
+            @foreach($globalBreakingPosts as $bPost)
+              <a href="{{ route('post.show', $bPost->slug) }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $bPost->title }}</a>
+            @endforeach
+          @endif
         @else
           <span class="ticker-item">प्रधानमंत्री मोदी ने नई दिल्ली में द्विपक्षीय बैठक की</span>
           <span class="ticker-item">भारत ने चंद्रयान-4 मिशन के लिए ISRO को मिली मंज़ूरी</span>
