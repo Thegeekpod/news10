@@ -233,7 +233,7 @@
           <section class="section-wrap">
             <div class="section-header">
               <h2 class="section-title">📹 वीडियो न्यूज़ <span class="en">Video News</span></h2>
-              <a href="#" class="view-all">सभी देखें →</a>
+              <a href="{{ route('videos.index') }}" class="view-all">सभी देखें →</a>
             </div>
             <div class="video-grid">
               @if(isset($videoNews) && $videoNews->count() > 0)

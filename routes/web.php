@@ -25,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('/news/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/videos', [\App\Http\Controllers\Frontend\VideoController::class, 'index'])->name('videos.index');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 Route::get('/api/stocks', function () {
