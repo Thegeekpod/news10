@@ -65,6 +65,9 @@ class HomeController extends Controller
         $sidebarTopAd = Ad::active()->where('placement', 'sidebar_top')->inRandomOrder()->first();
         $sidebarBottomAd = Ad::active()->where('placement', 'sidebar_bottom')->inRandomOrder()->first();
 
+        // 6. Video News
+        $videoNews = \App\Models\Video::where('is_active', true)->orderBy('created_at', 'desc')->take(4)->get();
+
         return view('frontend.index', compact(
             'mainHero',
             'sideHeroes',
@@ -73,7 +76,8 @@ class HomeController extends Controller
             'editorPicks',
             'homeMiddleAd',
             'sidebarTopAd',
-            'sidebarBottomAd'
+            'sidebarBottomAd',
+            'videoNews'
         ));
     }
 }

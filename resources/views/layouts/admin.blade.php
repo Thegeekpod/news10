@@ -463,6 +463,11 @@
                 <i class="fa-solid fa-bolt"></i> Breaking Tickers
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.videos.index') }}" class="{{ request()->routeIs('admin.videos.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-video"></i> Video News
+            </a>
+        </li>
 
         <li class="menu-header">Monetization</li>
         <li class="menu-item">

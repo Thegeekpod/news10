@@ -97,6 +97,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('posts/{post}/toggle-breaking', [AdminPostController::class, 'toggleBreaking'])->name('posts.toggleBreaking');
     Route::resource('posts', AdminPostController::class);
 
+    // Video News
+    Route::resource('videos', \App\Http\Controllers\VideoController::class)->except(['show']);
+
     // Categories Management
     Route::resource('categories', AdminCategoryController::class)->except(['create', 'show', 'edit']);
 

@@ -236,50 +236,26 @@
               <a href="#" class="view-all">सभी देखें →</a>
             </div>
             <div class="video-grid">
-              <article class="video-card" tabindex="0">
-                <div class="video-thumb">
-                  <img src="https://picsum.photos/300/150?random=60" alt="वीडियो" />
-                  <div class="video-play"><div class="video-play-btn"><i class="fa-solid fa-play"></i></div></div>
-                  <span class="video-duration">4:32</span>
-                </div>
-                <div class="video-body">
-                  <p class="video-title">मोदी सरकार का 100 दिन का एजेंडा: क्या बदलेगा?</p>
-                  <p class="video-meta"><i class="fa-regular fa-eye"></i> 1.2M views &nbsp;·&nbsp; 2 दिन पहले</p>
-                </div>
-              </article>
-              <article class="video-card" tabindex="0">
-                <div class="video-thumb">
-                  <img src="https://picsum.photos/300/150?random=61" alt="वीडियो" />
-                  <div class="video-play"><div class="video-play-btn"><i class="fa-solid fa-play"></i></div></div>
-                  <span class="video-duration">7:18</span>
-                </div>
-                <div class="video-body">
-                  <p class="video-title">ISRO वैज्ञानिक से खास बातचीत: चंद्रयान-4 की पूरी कहानी</p>
-                  <p class="video-meta"><i class="fa-regular fa-eye"></i> 892K views &nbsp;·&nbsp; 3 दिन पहले</p>
-                </div>
-              </article>
-              <article class="video-card" tabindex="0">
-                <div class="video-thumb">
-                  <img src="https://picsum.photos/300/150?random=62" alt="वीडियो" />
-                  <div class="video-play"><div class="video-play-btn"><i class="fa-solid fa-play"></i></div></div>
-                  <span class="video-duration">3:45</span>
-                </div>
-                <div class="video-body">
-                  <p class="video-title">क्रिकेट विश्व कप 2027: भारत का शेड्यूल देखें यहाँ</p>
-                  <p class="video-meta"><i class="fa-regular fa-eye"></i> 2.5M views &nbsp;·&nbsp; 1 दिन पहले</p>
-                </div>
-              </article>
-              <article class="video-card" tabindex="0">
-                <div class="video-thumb">
-                  <img src="https://picsum.photos/300/150?random=63" alt="वीडियो" />
-                  <div class="video-play"><div class="video-play-btn"><i class="fa-solid fa-play"></i></div></div>
-                  <span class="video-duration">12:05</span>
-                </div>
-                <div class="video-body">
-                  <p class="video-title">महंगाई पर आम जनता से बातचीत — सच्चाई क्या है?</p>
-                  <p class="video-meta"><i class="fa-regular fa-eye"></i> 445K views &nbsp;·&nbsp; 4 दिन पहले</p>
-                </div>
-              </article>
+              @if(isset($videoNews) && $videoNews->count() > 0)
+                @foreach($videoNews as $video)
+                  <article class="video-card" tabindex="0" onclick="openVideoModal('{{ $video->youtube_url }}')" style="cursor: pointer;">
+                    <div class="video-thumb">
+                      <img src="{{ str_starts_with($video->thumbnail, 'http') ? $video->thumbnail : asset('storage/'.$video->thumbnail) }}" alt="{{ $video->title }}" />
+                      <div class="video-play"><div class="video-play-btn"><i class="fa-solid fa-play"></i></div></div>
+                      @if($video->duration) <span class="video-duration">{{ $video->duration }}</span> @endif
+                    </div>
+                    <div class="video-body">
+                      <p class="video-title">{{ $video->title }}</p>
+                      <p class="video-meta">
+                        @if($video->views_text) <i class="fa-regular fa-eye"></i> {{ $video->views_text }} &nbsp;·&nbsp; @endif
+                        {{ $video->time_ago_text ?? $video->created_at->diffForHumans() }}
+                      </p>
+                    </div>
+                  </article>
+                @endforeach
+              @else
+                <p>No videos available.</p>
+              @endif
             </div>
           </section>
 
@@ -343,5 +319,44 @@
     </div>
   </section>
 
+  <!-- Video Modal -->
+  <div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+    <div style="position:relative; width:90%; max-width:800px; background:#000; border-radius:8px; overflow:hidden; aspect-ratio:16/9;">
+      <button onclick="closeVideoModal()" style="position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.2); border:none; color:#fff; font-size:24px; cursor:pointer; width:40px; height:40px; border-radius:50%; z-index:10;">&times;</button>
+      <iframe id="videoIframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
 </main>
+
+@push('styles')
+<style>
+.video-card:hover { transform: translateY(-4px); transition: 0.3s; }
+.video-card:hover .video-play-btn { background: var(--red); color: #fff; transform: scale(1.1); }
+</style>
+@endpush
+
+<script>
+function extractVideoID(url){
+    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match && match[2].length == 11) {
+        return match[2];
+    }
+    return null;
+}
+function openVideoModal(url) {
+    var videoId = extractVideoID(url);
+    if(videoId) {
+        document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+        document.getElementById('videoModal').style.display = 'flex';
+    } else {
+        window.open(url, '_blank');
+    }
+}
+function closeVideoModal() {
+    document.getElementById('videoIframe').src = '';
+    document.getElementById('videoModal').style.display = 'none';
+}
+</script>
 @endsection
