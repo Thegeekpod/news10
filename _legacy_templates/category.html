@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="भारत समाचार — राजनीति की ताज़ा खबरें, ब्रेकिंग न्यूज़, विश्लेषण और लाइव अपडेट्स।" />
+  <meta name="keywords" content="राजनीति, political news hindi, india politics, bharat samachar" />
+  <title>राजनीति — ताज़ा खबरें | भारत समाचार</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="category.css" />
+</head>
+<body>
+
+<!-- ════════ TOP BAR ════════ -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-date">
+      <i class="fa-regular fa-calendar"></i>
+      <span id="top-date">बुधवार, 16 सितम्बर 2026</span>
+    </div>
+    <div class="top-bar-right">
+      <a href="#">ई-पेपर</a>
+      <a href="#">RSS</a>
+      <a href="#">विज्ञापन</a>
+      <a href="#">संपर्क</a>
+      <div class="social-icons">
+        <a href="#" class="fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="tw" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="yt" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ TICKER ════════ -->
+<div class="ticker-wrap">
+  <div class="container">
+    <span class="ticker-label">⚡ ताज़ा</span>
+    <div class="ticker-content">
+      <div class="ticker-inner">
+        <span class="ticker-item">संसद का मानसून सत्र आज से शुरू</span>
+        <span class="ticker-item">5 राज्यों में विधानसभा चुनाव की तारीखें घोषित</span>
+        <span class="ticker-item">ISRO का चंद्रयान-4 मिशन 2027 में लॉन्च होगा</span>
+        <span class="ticker-item">लोकसभा में बजट 2027 पेश, मध्यम वर्ग को बड़ी राहत</span>
+        <span class="ticker-item">संसद का मानसून सत्र आज से शुरू</span>
+        <span class="ticker-item">5 राज्यों में विधानसभा चुनाव की तारीखें घोषित</span>
+        <span class="ticker-item">ISRO का चंद्रयान-4 मिशन 2027 में लॉन्च होगा</span>
+        <span class="ticker-item">लोकसभा में बजट 2027 पेश, मध्यम वर्ग को बड़ी राहत</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ HEADER ════════ -->
+<header class="header" id="main-header">
+  <div class="header-top">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🇮🇳</div>
+        <div class="logo-text">
+          <span class="logo-hindi">भारत समाचार</span>
+          <span class="logo-tagline">Bharat Samachar · Sach Ki Awaaz</span>
+        </div>
+      </a>
+      <div class="header-ad">
+        <img src="https://picsum.photos/600/70?random=99" alt="Advertisement" />
+      </div>
+      <div class="header-actions">
+        <button class="search-btn" id="search-toggle" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="btn-subscribe">🔔 सदस्यता लें</button>
+      </div>
+    </div>
+    <div class="search-bar" id="search-bar">
+      <div class="search-bar-inner">
+        <input type="text" placeholder="खबर खोजें..." id="search-input" />
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" aria-label="Main Navigation">
+    <div class="container">
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-list" id="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">🏠 होम</a></li>
+        <li class="nav-item dropdown">
+          <a href="category.html" class="nav-link active">राजनीति <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="dropdown-menu">
+            <a href="#">राष्ट्रीय राजनीति</a>
+            <a href="#">राज्य सरकार</a>
+            <a href="#">चुनाव</a>
+            <a href="#">संसद</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">देश <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="dropdown-menu">
+            <a href="#">उत्तर भारत</a>
+            <a href="#">दक्षिण भारत</a>
+            <a href="#">पूर्वी भारत</a>
+            <a href="#">पश्चिम भारत</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="#" class="nav-link">विदेश</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">खेल</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">मनोरंजन</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">व्यापार</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">टेक्नोलॉजी</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">स्वास्थ्य</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">शिक्षा</a></li>
+        <li class="nav-item"><a href="#" class="nav-live">🔴 LIVE TV</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- ════════ BREADCRUMB ════════ -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html"><i class="fa-solid fa-house"></i> होम</a>
+      <span class="bc-sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="bc-current">राजनीति</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ════════ CATEGORY HERO BANNER ════════ -->
+<div class="cat-hero-banner">
+  <div class="cat-hero-bg">
+    <img src="https://picsum.photos/1400/280?random=200" alt="राजनीति बैनर" />
+    <div class="cat-hero-overlay"></div>
+  </div>
+  <div class="container cat-hero-content">
+    <div class="cat-hero-icon">🏛️</div>
+    <div>
+      <h1 class="cat-hero-title">राजनीति</h1>
+      <p class="cat-hero-sub">देश की राजनीतिक खबरें, संसद, चुनाव और सरकारी नीतियाँ</p>
+      <div class="cat-hero-stats">
+        <span><i class="fa-solid fa-newspaper"></i> 12,840+ लेख</span>
+        <span><i class="fa-regular fa-clock"></i> आज 48 नई खबरें</span>
+        <span><i class="fa-regular fa-eye"></i> 2.4M पाठक / माह</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ SUB-CATEGORY TABS ════════ -->
+<div class="subcat-bar">
+  <div class="container">
+    <div class="subcat-tabs" id="subcat-tabs" role="tablist" aria-label="Sub-categories">
+      <button class="subcat-tab active" data-cat="all" role="tab" aria-selected="true">सभी</button>
+      <button class="subcat-tab" data-cat="national" role="tab">राष्ट्रीय</button>
+      <button class="subcat-tab" data-cat="election" role="tab">चुनाव</button>
+      <button class="subcat-tab" data-cat="parliament" role="tab">संसद</button>
+      <button class="subcat-tab" data-cat="state" role="tab">राज्य</button>
+      <button class="subcat-tab" data-cat="policy" role="tab">नीति</button>
+      <button class="subcat-tab" data-cat="foreign" role="tab">विदेश नीति</button>
+    </div>
+    <div class="subcat-sort">
+      <label for="sort-select" class="sort-label"><i class="fa-solid fa-arrow-up-wide-short"></i></label>
+      <select id="sort-select" class="sort-select" aria-label="Sort by">
+        <option value="latest">सबसे ताज़ा</option>
+        <option value="popular">सबसे लोकप्रिय</option>
+        <option value="trending">ट्रेंडिंग</option>
+        <option value="oldest">पुराना पहले</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MAIN CONTENT ════════ -->
+<main class="cat-main">
+  <div class="container">
+    <div class="cat-layout">
+
+      <!-- ════ LEFT: ARTICLES ════ -->
+      <div class="cat-articles">
+
+        <!-- TOP STORY (Featured) -->
+        <section class="top-story-wrap" aria-label="शीर्ष खबर">
+          <div class="top-story-label">
+            <span class="ts-badge"><i class="fa-solid fa-star"></i> शीर्ष खबर</span>
+          </div>
+          <a href="detail.html" class="top-story-card">
+            <div class="top-story-img">
+              <img src="https://picsum.photos/760/380?random=1" alt="शीर्ष खबर" />
+              <div class="top-story-overlay"></div>
+              <span class="badge badge-red ts-live-badge">🔴 ब्रेकिंग</span>
+            </div>
+            <div class="top-story-body">
+              <div class="ts-cats">
+                <span class="badge badge-orange">राजनीति</span>
+                <span class="badge badge-navy">विदेश नीति</span>
+              </div>
+              <h2 class="top-story-title">प्रधानमंत्री मोदी ने भारत-कनाडा संबंधों पर दिया बड़ा बयान, कहा — "राष्ट्रीय हित से कोई समझौता नहीं होगा"</h2>
+              <p class="top-story-excerpt">नई दिल्ली में आयोजित G20 शिखर सम्मेलन के बाद पत्रकार सम्मेलन में पीएम मोदी ने कनाडा के साथ बिगड़ते संबंधों पर कड़ा रुख अपनाते हुए स्पष्ट किया कि भारत अपने नागरिकों और संप्रभुता की रक्षा के लिए हर कदम उठाने को तैयार है।</p>
+              <div class="top-story-meta">
+                <img class="ts-avatar" src="https://picsum.photos/28/28?random=200" alt="लेखक" />
+                <span class="ts-author">रमेश शर्मा</span>
+                <span class="ts-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 12 मिनट पहले</span>
+                <span class="ts-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 45,320</span>
+                <span class="ts-dot">·</span>
+                <span><i class="fa-solid fa-book-open"></i> 6 मिनट</span>
+              </div>
+            </div>
+          </a>
+        </section>
+
+        <!-- AD BANNER -->
+        <div class="ad-banner" style="margin:0 0 20px">
+          <img src="https://picsum.photos/800/90?random=51" alt="Advertisement" />
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+          <div class="filter-result-count">
+            <span id="result-count">48</span> खबरें मिलीं
+          </div>
+          <div class="view-toggle" role="group" aria-label="View mode">
+            <button class="view-btn active" id="view-grid" aria-label="Grid View" title="Grid View">
+              <i class="fa-solid fa-grip"></i>
+            </button>
+            <button class="view-btn" id="view-list" aria-label="List View" title="List View">
+              <i class="fa-solid fa-list"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- NEWS ARTICLES GRID -->
+        <div class="articles-container grid-view" id="articles-container">
+
+          <!-- Article Card 1 -->
+          <a href="detail.html" class="art-card" data-cat="election">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=10" alt="खबर" />
+              <span class="badge badge-orange art-badge">चुनाव</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">चुनाव आयोग ने 5 राज्यों के विधानसभा चुनाव की तारीखें कीं घोषित, जानें पूरा शेड्यूल</h3>
+              <p class="art-card-excerpt">आयोग ने MP, राजस्थान, छत्तीसगढ़, मिज़ोरम और तेलंगाना में चुनावों की घोषणा की...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=201" alt="लेखक" class="art-author-img" />
+                <span class="art-author">अमित कुमार</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 30 मिनट पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 12.4K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 2 -->
+          <a href="detail.html" class="art-card" data-cat="national">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=11" alt="खबर" />
+              <span class="badge badge-red art-badge">राष्ट्रीय</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">विपक्ष ने लोकसभा में अविश्वास प्रस्ताव लाने की दी चेतावनी, सरकार बोली — हम तैयार हैं</h3>
+              <p class="art-card-excerpt">कांग्रेस, SP, TMC और AAP ने मिलकर विपक्षी मोर्चा बनाया और सरकार पर जनविरोधी नीतियों का लगाया आरोप...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=202" alt="लेखक" class="art-author-img" />
+                <span class="art-author">सुनीता पांडे</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 1 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 28.1K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 3 -->
+          <a href="detail.html" class="art-card" data-cat="parliament">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=12" alt="खबर" />
+              <span class="badge badge-navy art-badge">संसद</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">लोकसभा में बजट 2027 पेश — वित्त मंत्री ने किए ये बड़े ऐलान, जानें किसे क्या मिला</h3>
+              <p class="art-card-excerpt">₹50 लाख करोड़ के बजट में किसान, युवा और महिलाओं के लिए विशेष प्रावधान किए गए हैं...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=203" alt="लेखक" class="art-author-img" />
+                <span class="art-author">विक्रम सिंह</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 2 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 41.7K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 4 -->
+          <a href="detail.html" class="art-card" data-cat="state">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=13" alt="खबर" />
+              <span class="badge badge-purple art-badge">राज्य</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">यूपी में नए मुख्यमंत्री की रेस — BJP में मंथन, कई बड़े नेताओं के नाम चर्चा में</h3>
+              <p class="art-card-excerpt">उत्तर प्रदेश में अगले विधानसभा चुनाव से पहले मुख्यमंत्री बदलाव की चर्चाएं तेज़ हो गई हैं...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=204" alt="लेखक" class="art-author-img" />
+                <span class="art-author">रवि शुक्ला</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 3 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 19.3K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 5 -->
+          <a href="detail.html" class="art-card" data-cat="national">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=14" alt="खबर" />
+              <span class="badge badge-green art-badge">नीति</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">राहुल गांधी ने किया 'भारत जोड़ो यात्रा 2.0' का ऐलान, इस तारीख से होगी शुरुआत</h3>
+              <p class="art-card-excerpt">कांग्रेस नेता राहुल गांधी 2 अक्टूबर से नई यात्रा की शुरुआत करेंगे, 15 राज्यों से गुजरेगी...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=205" alt="लेखक" class="art-author-img" />
+                <span class="art-author">मीरा जोशी</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 4 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 33.8K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 6 -->
+          <a href="detail.html" class="art-card" data-cat="foreign">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=15" alt="खबर" />
+              <span class="badge badge-blue art-badge">विदेश नीति</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">भारत-चीन सीमा पर तनाव घटा — दोनों देशों के बीच हुई उच्चस्तरीय वार्ता</h3>
+              <p class="art-card-excerpt">LAC पर 18 महीने के गतिरोध के बाद दोनों देशों ने अपनी सेनाएं पीछे हटाने का किया ऐलान...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=206" alt="लेखक" class="art-author-img" />
+                <span class="art-author">रमेश शर्मा</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 5 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 52.4K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 7 -->
+          <a href="detail.html" class="art-card" data-cat="election">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=16" alt="खबर" />
+              <span class="badge badge-orange art-badge">चुनाव</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">दिल्ली में AAP और कांग्रेस के बीच गठबंधन — सीटों के बंटवारे पर बनी सहमति</h3>
+              <p class="art-card-excerpt">70 विधानसभा सीटों में से AAP 48 और कांग्रेस 22 सीटों पर चुनाव लड़ेगी...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=207" alt="लेखक" class="art-author-img" />
+                <span class="art-author">प्रिया गुप्ता</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 6 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 16.9K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 8 -->
+          <a href="detail.html" class="art-card" data-cat="policy">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=17" alt="खबर" />
+              <span class="badge badge-red art-badge">नीति</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">सरकार ने लॉन्च की 'PM Yuva Shakti' योजना — 10 लाख युवाओं को मिलेगा रोजगार</h3>
+              <p class="art-card-excerpt">केंद्र सरकार ने युवा बेरोज़गारी को लक्ष्य बनाते हुए एक महत्वाकांक्षी रोजगार योजना का शुभारंभ किया...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=208" alt="लेखक" class="art-author-img" />
+                <span class="art-author">अनुज त्रिपाठी</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 7 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 24.5K</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article Card 9 -->
+          <a href="detail.html" class="art-card" data-cat="state">
+            <div class="art-card-img">
+              <img src="https://picsum.photos/380/220?random=18" alt="खबर" />
+              <span class="badge badge-purple art-badge">राज्य</span>
+            </div>
+            <div class="art-card-body">
+              <h3 class="art-card-title">महाराष्ट्र में महाविकास अघाड़ी की बैठक — 2027 चुनाव के लिए सीटों पर मंथन</h3>
+              <p class="art-card-excerpt">शिवसेना, NCP और कांग्रेस ने मिलकर महाराष्ट्र में अगले विधानसभा चुनाव की तैयारी शुरू की...</p>
+              <div class="art-card-meta">
+                <img src="https://picsum.photos/24/24?random=209" alt="लेखक" class="art-author-img" />
+                <span class="art-author">दीपक नायर</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-clock"></i> 8 घंटे पहले</span>
+                <span class="art-dot">·</span>
+                <span><i class="fa-regular fa-eye"></i> 11.2K</span>
+              </div>
+            </div>
+          </a>
+
+        </div><!-- /.articles-container -->
+
+        <!-- LOAD MORE / PAGINATION -->
+        <div class="pagination-wrap">
+          <div class="load-more-wrap">
+            <button class="load-more-btn" id="load-more-btn">
+              <i class="fa-solid fa-rotate"></i>
+              और खबरें लोड करें
+              <span class="lm-count">(39 और बाकी)</span>
+            </button>
+          </div>
+
+          <nav class="pagination" aria-label="Pages">
+            <button class="pg-btn pg-prev disabled" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="pg-btn active" aria-current="page">1</button>
+            <button class="pg-btn">2</button>
+            <button class="pg-btn">3</button>
+            <span class="pg-dots">…</span>
+            <button class="pg-btn">12</button>
+            <button class="pg-btn pg-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+          </nav>
+        </div>
+
+      </div><!-- /.cat-articles -->
+
+      <!-- ════ RIGHT: SIDEBAR ════ -->
+      <aside class="cat-sidebar">
+        <div class="cat-sidebar-sticky">
+
+          <!-- Sidebar Ad -->
+          <div class="sidebar-ad">
+            <img src="https://picsum.photos/340/280?random=90" alt="Advertisement" />
+          </div>
+
+          <!-- Trending in Category -->
+          <div class="section-wrap">
+            <div class="section-header">
+              <h2 class="section-title">🔥 राजनीति में ट्रेंडिंग <span class="en">Trending</span></h2>
+            </div>
+            <div class="trending-item" tabindex="0">
+              <span class="trending-rank">1</span>
+              <div>
+                <p class="trending-title">भारत-कनाडा संकट: पीएम मोदी का बड़ा बयान</p>
+                <p class="trending-meta">45.3K views</p>
+              </div>
+            </div>
+            <div class="trending-item" tabindex="0">
+              <span class="trending-rank">2</span>
+              <div>
+                <p class="trending-title">5 राज्यों में चुनाव तारीखें घोषित, बड़ा अपडेट</p>
+                <p class="trending-meta">38.1K views</p>
+              </div>
+            </div>
+            <div class="trending-item" tabindex="0">
+              <span class="trending-rank">3</span>
+              <div>
+                <p class="trending-title">बजट 2027: मध्यम वर्ग को टैक्स में राहत</p>
+                <p class="trending-meta">41.7K views</p>
+              </div>
+            </div>
+            <div class="trending-item" tabindex="0">
+              <span class="trending-rank">4</span>
+              <div>
+                <p class="trending-title">यूपी CM रेस: इन नेताओं के नाम चर्चा में</p>
+                <p class="trending-meta">19.3K views</p>
+              </div>
+            </div>
+            <div class="trending-item" tabindex="0">
+              <span class="trending-rank">5</span>
+              <div>
+                <p class="trending-title">AAP-कांग्रेस गठबंधन: सीट शेयरिंग तय</p>
+                <p class="trending-meta">16.9K views</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Must Read -->
+          <div class="section-wrap">
+            <div class="section-header">
+              <h2 class="section-title">📌 ज़रूर पढ़ें <span class="en">Must Read</span></h2>
+            </div>
+            <div class="numbered-news">
+              <div class="numbered-item" tabindex="0">
+                <span class="numbered-num">01</span>
+                <div>
+                  <p class="numbered-title">G20 में भारत: क्या रहा हासिल, पूरा विश्लेषण</p>
+                  <p class="numbered-meta">विश्लेषण · 1 दिन पहले</p>
+                </div>
+              </div>
+              <div class="numbered-item" tabindex="0">
+                <span class="numbered-num">02</span>
+                <div>
+                  <p class="numbered-title">2027 चुनाव: किसकी होगी जीत? सर्वे में चौंकाने वाले नतीजे</p>
+                  <p class="numbered-meta">सर्वे · 2 दिन पहले</p>
+                </div>
+              </div>
+              <div class="numbered-item" tabindex="0">
+                <span class="numbered-num">03</span>
+                <div>
+                  <p class="numbered-title">EVM विवाद: सुप्रीम कोर्ट का अहम फैसला</p>
+                  <p class="numbered-meta">कानून · 3 दिन पहले</p>
+                </div>
+              </div>
+              <div class="numbered-item" tabindex="0">
+                <span class="numbered-num">04</span>
+                <div>
+                  <p class="numbered-title">नई शिक्षा नीति पर विपक्ष का विरोध क्यों?</p>
+                  <p class="numbered-meta">नीति · 4 दिन पहले</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Poll -->
+          <div class="section-wrap">
+            <div class="section-header">
+              <h2 class="section-title">📊 पाठक सर्वेक्षण <span class="en">Poll</span></h2>
+            </div>
+            <div class="poll-widget">
+              <p class="poll-question">2027 के लोकसभा चुनाव में आप किसे PM देखना चाहेंगे?</p>
+              <div class="poll-option">
+                <div class="poll-option-label"><span>नरेंद्र मोदी</span><span class="poll-pct">48%</span></div>
+                <div class="poll-bar-bg"><div class="poll-bar-fill green" style="width:48%"></div></div>
+              </div>
+              <div class="poll-option">
+                <div class="poll-option-label"><span>राहुल गांधी</span><span class="poll-pct">28%</span></div>
+                <div class="poll-bar-bg"><div class="poll-bar-fill blue" style="width:28%"></div></div>
+              </div>
+              <div class="poll-option">
+                <div class="poll-option-label"><span>ममता बनर्जी</span><span class="poll-pct">14%</span></div>
+                <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:14%"></div></div>
+              </div>
+              <div class="poll-option">
+                <div class="poll-option-label"><span>अरविंद केजरीवाल</span><span class="poll-pct">10%</span></div>
+                <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:10%"></div></div>
+              </div>
+              <button class="poll-vote-btn" id="poll-vote-btn">✅ वोट करें</button>
+            </div>
+          </div>
+
+          <!-- Newsletter mini -->
+          <div class="section-wrap">
+            <h2 class="section-title">📧 न्यूज़लेटर</h2>
+            <p style="font-size:.82rem;color:var(--gray);margin:-10px 0 12px">राजनीतिक खबरें सीधे inbox में पाएँ</p>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <input type="email" id="nl-mini-email" placeholder="आपका ईमेल..." style="border:1.5px solid var(--gray-light);border-radius:6px;padding:10px 14px;font-family:var(--font-hindi);font-size:.85rem;outline:none;width:100%" />
+              <button id="nl-mini-btn" style="width:100%;background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;border:none;padding:10px;border-radius:6px;font-family:var(--font-hindi);font-weight:700;font-size:.9rem;cursor:pointer">सदस्य बनें</button>
+            </div>
+          </div>
+
+          <!-- Sidebar Ad 2 -->
+          <div class="sidebar-ad" style="height:220px">
+            <img src="https://picsum.photos/340/220?random=91" alt="Advertisement" />
+          </div>
+
+        </div><!-- /.cat-sidebar-sticky -->
+      </aside>
+
+    </div><!-- /.cat-layout -->
+  </div><!-- /.container -->
+</main>
+
+<!-- ════════ NEWSLETTER ════════ -->
+<section class="newsletter-section" aria-label="न्यूज़लेटर">
+  <div class="container">
+    <div class="newsletter-wrap">
+      <div class="newsletter-text">
+        <h2>📧 ताज़ा खबरें सीधे <br/>आपके इनबॉक्स में पाएँ</h2>
+        <p>हमारे न्यूज़लेटर की सदस्यता लें और हर सुबह देश-दुनिया की महत्वपूर्ण खबरें सबसे पहले पाएँ। बिल्कुल निःशुल्क!</p>
+      </div>
+      <div class="newsletter-form">
+        <div class="newsletter-row">
+          <input type="email" placeholder="आपका ईमेल पता लिखें..." id="nl-email" />
+          <button id="nl-btn">सदस्यता लें →</button>
+        </div>
+        <p class="newsletter-note">* हम आपकी जानकारी किसी के साथ साझा नहीं करते।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer" aria-label="Footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-icon" style="width:40px;height:40px;font-size:1.2rem">🇮🇳</div>
+          <div class="logo-text">
+            <span class="logo-hindi">भारत समाचार</span>
+            <span class="logo-tagline">Bharat Samachar</span>
+          </div>
+        </a>
+        <p class="footer-about">भारत समाचार देश की सबसे विश्वसनीय हिंदी न्यूज़ वेबसाइट है। हम 24×7 ताज़ा, निष्पक्ष और सटीक खबरें प्रदान करते हैं।</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+      <div>
+        <span class="footer-heading">समाचार श्रेणी</span>
+        <div class="footer-links">
+          <a href="category.html">राजनीति</a><a href="#">देश</a><a href="#">विदेश</a>
+          <a href="#">खेल</a><a href="#">मनोरंजन</a><a href="#">व्यापार</a>
+          <a href="#">टेक्नोलॉजी</a><a href="#">स्वास्थ्य</a>
+        </div>
+      </div>
+      <div>
+        <span class="footer-heading">त्वरित लिंक</span>
+        <div class="footer-links">
+          <a href="#">हमारे बारे में</a><a href="#">संपादकीय नीति</a>
+          <a href="#">ई-पेपर</a><a href="#">RSS फ़ीड</a>
+          <a href="#">विज्ञापन दें</a><a href="#">करियर</a>
+        </div>
+      </div>
+      <div>
+        <span class="footer-heading">संपर्क करें</span>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>कनॉट प्लेस, नई दिल्ली — 110001</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+91-11-4567-8900</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>editor@bharatsamachar.in</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;width:100%">
+      <p>© 2026 भारत समाचार. सभी अधिकार सुरक्षित।</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scroll-top" aria-label="ऊपर जाएँ">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<!-- ════════ JAVASCRIPT ════════ -->
+<script>
+  /* ── Live Date ── */
+  (function () {
+    const days   = ['रविवार','सोमवार','मंगलवार','बुधवार','गुरुवार','शुकवार','शनिवार'];
+    const months = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
+    const now = new Date();
+    const el  = document.getElementById('top-date');
+    if (el) el.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  })();
+
+  /* ── Search ── */
+  document.getElementById('search-toggle')?.addEventListener('click', () => {
+    const sb = document.getElementById('search-bar');
+    sb?.classList.toggle('open');
+    if (sb?.classList.contains('open')) document.getElementById('search-input')?.focus();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('search-bar')?.classList.remove('open'); });
+
+  /* ── Hamburger ── */
+  document.getElementById('hamburger')?.addEventListener('click', () => {
+    document.getElementById('nav-list')?.classList.toggle('open');
+  });
+
+  /* ── Scroll Top ── */
+  const scrollTopBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => scrollTopBtn?.classList.toggle('visible', window.scrollY > 400));
+  scrollTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ── Sub-category Filter Tabs ── */
+  const tabs      = document.querySelectorAll('.subcat-tab');
+  const container = document.getElementById('articles-container');
+  const countEl   = document.getElementById('result-count');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function () {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      this.classList.add('active');
+      this.setAttribute('aria-selected','true');
+
+      const cat   = this.dataset.cat;
+      const cards = container.querySelectorAll('.art-card');
+      let shown   = 0;
+
+      cards.forEach(card => {
+        const match = cat === 'all' || card.dataset.cat === cat;
+        card.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+
+      if (countEl) countEl.textContent = shown;
+    });
+  });
+
+  /* ── Sort Select ── */
+  document.getElementById('sort-select')?.addEventListener('change', function () {
+    const cards = [...container.querySelectorAll('.art-card')];
+    // Shuffle to simulate sort (demo)
+    cards.sort(() => Math.random() - 0.5);
+    cards.forEach(c => container.appendChild(c));
+  });
+
+  /* ── View Toggle (Grid / List) ── */
+  document.getElementById('view-grid')?.addEventListener('click', function () {
+    container.classList.remove('list-view');
+    container.classList.add('grid-view');
+    this.classList.add('active');
+    document.getElementById('view-list')?.classList.remove('active');
+  });
+  document.getElementById('view-list')?.addEventListener('click', function () {
+    container.classList.remove('grid-view');
+    container.classList.add('list-view');
+    this.classList.add('active');
+    document.getElementById('view-grid')?.classList.remove('active');
+  });
+
+  /* ── Load More ── */
+  let loadPage = 1;
+  document.getElementById('load-more-btn')?.addEventListener('click', function () {
+    this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> लोड हो रहा है...';
+    setTimeout(() => {
+      loadPage++;
+      if (loadPage >= 3) {
+        this.textContent = '✅ सभी खबरें लोड हो गईं';
+        this.disabled = true;
+        return;
+      }
+      this.innerHTML = '<i class="fa-solid fa-rotate"></i> और खबरें लोड करें <span class="lm-count">(20 और बाकी)</span>';
+
+      // Append dummy cards
+      const dummyTitles = [
+        'नए केंद्रीय मंत्री का बड़ा बयान, विपक्ष में हलचल',
+        'राज्यसभा में पास हुआ महत्वपूर्ण विधेयक, जानें प्रावधान'
+      ];
+      dummyTitles.forEach((title, i) => {
+        const card = document.createElement('a');
+        card.href = 'detail.html';
+        card.className = 'art-card';
+        card.dataset.cat = 'national';
+        card.innerHTML = `
+          <div class="art-card-img">
+            <img src="https://picsum.photos/380/220?random=${90+loadPage+i}" alt="खबर" />
+            <span class="badge badge-red art-badge">राष्ट्रीय</span>
+          </div>
+          <div class="art-card-body">
+            <h3 class="art-card-title">${title}</h3>
+            <p class="art-card-excerpt">पूरी खबर पढ़ने के लिए क्लिक करें...</p>
+            <div class="art-card-meta">
+              <span><i class="fa-regular fa-clock"></i> अभी</span>
+              <span class="art-dot">·</span>
+              <span><i class="fa-regular fa-eye"></i> नई</span>
+            </div>
+          </div>`;
+        container.appendChild(card);
+      });
+    }, 1200);
+  });
+
+  /* ── Pagination ── */
+  document.querySelectorAll('.pg-btn:not(.pg-prev):not(.pg-next)').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      window.scrollTo({ top: document.querySelector('.cat-main').offsetTop - 160, behavior: 'smooth' });
+    });
+  });
+
+  /* ── Poll ── */
+  document.getElementById('poll-vote-btn')?.addEventListener('click', function () {
+    this.textContent = '✅ वोट दर्ज हो गया!';
+    this.disabled = true;
+    this.style.opacity = '.7';
+  });
+
+  /* ── Poll bar animation on load ── */
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.poll-bar-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => { bar.style.width = w; }, 500);
+    });
+  });
+
+  /* ── Newsletter ── */
+  document.getElementById('nl-btn')?.addEventListener('click', () => {
+    const em = document.getElementById('nl-email');
+    if (!em?.value.includes('@')) { em.style.borderColor = '#e74c3c'; return; }
+    em.style.borderColor = '';
+    em.disabled = true;
+    document.getElementById('nl-btn').textContent = '🎉 सदस्यता पूरी हुई';
+  });
+  document.getElementById('nl-mini-btn')?.addEventListener('click', () => {
+    const em = document.getElementById('nl-mini-email');
+    if (!em?.value.includes('@')) { em.style.borderColor = '#e74c3c'; return; }
+    em.style.borderColor = '';
+    em.disabled = true;
+    document.getElementById('nl-mini-btn').textContent = '✅ धन्यवाद!';
+  });
+</script>
+
+</body>
+</html>
