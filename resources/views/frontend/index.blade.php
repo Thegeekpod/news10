@@ -60,11 +60,32 @@
       </div><!-- /.hero-grid -->
 
       <!-- Breaking Strip -->
-      <div class="breaking-strip" aria-label="ब्रेकिंग न्यूज़">
+      <!-- <div class="breaking-strip" aria-label="ब्रेकिंग न्यूज़">
         <span class="breaking-label">⚡ BREAKING</span>
         <div class="breaking-items">
           <div class="breaking-scroll" id="breaking-scroll">
-            @if(isset($globalBreakingPosts) && $globalBreakingPosts->count() > 0)
+            @if(isset($globalBreakingTickers) && $globalBreakingTickers->count() > 0)
+              @foreach($globalBreakingTickers as $ticker)
+                <span>
+                    @if($ticker->link_url)
+                        <a href="{{ $ticker->link_url }}" style="color:inherit; text-decoration:none;">🔴 {{ $ticker->ticker_text }}</a>
+                    @else
+                        🔴 {{ $ticker->ticker_text }}
+                    @endif
+                    &nbsp;|&nbsp;
+                </span>
+              @endforeach
+              @foreach($globalBreakingTickers as $ticker)
+                <span>
+                    @if($ticker->link_url)
+                        <a href="{{ $ticker->link_url }}" style="color:inherit; text-decoration:none;">🔴 {{ $ticker->ticker_text }}</a>
+                    @else
+                        🔴 {{ $ticker->ticker_text }}
+                    @endif
+                    &nbsp;|&nbsp;
+                </span>
+              @endforeach
+            @elseif(isset($globalBreakingPosts) && $globalBreakingPosts->count() > 0)
               @foreach($globalBreakingPosts as $bPost)
                 <span><a href="{{ route('post.show', $bPost->slug) }}" style="color:inherit; text-decoration:none;">🔴 {{ $bPost->title }}</a> &nbsp;|&nbsp;</span>
               @endforeach
@@ -79,7 +100,7 @@
             @endif
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </section>

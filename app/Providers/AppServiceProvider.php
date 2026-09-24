@@ -91,10 +91,13 @@ class AppServiceProvider extends ServiceProvider
                     ->inRandomOrder()
                     ->first();
 
+                $breakingTickers = \App\Models\BreakingTicker::where('is_active', true)->latest()->get();
+
                 $view->with([
                     'globalCategories' => $categories,
                     'globalSettings' => $settings,
                     'globalBreakingPosts' => $breakingPosts,
+                    'globalBreakingTickers' => $breakingTickers,
                     'headerAd' => $headerAd,
                     'globalPopularTags' => $popularTags,
                     'sidebarTrendingPosts' => $sidebarTrendingPosts,

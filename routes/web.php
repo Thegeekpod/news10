@@ -59,6 +59,10 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('ads/{ad}/toggle-status', [AdController::class, 'toggleStatus'])->name('ads.toggleStatus');
     Route::resource('ads', AdController::class)->except(['show']);
 
+    // Breaking Tickers
+    Route::post('tickers/{ticker}/toggle-status', [\App\Http\Controllers\Admin\BreakingTickerController::class, 'toggleStatus'])->name('tickers.toggleStatus');
+    Route::resource('tickers', \App\Http\Controllers\Admin\BreakingTickerController::class)->except(['create', 'show', 'edit', 'update']);
+
     // Settings
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings', [SettingController::class, 'update'])->name('settings.update');

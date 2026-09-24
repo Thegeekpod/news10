@@ -458,6 +458,11 @@
                 <i class="fa-solid fa-tags"></i> टैग्स (News Tags)
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.tickers.index') }}" class="{{ request()->routeIs('admin.tickers.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-bolt"></i> ब्रेकिंग न्यूज़ (Breaking Tickers)
+            </a>
+        </li>
 
         <li class="menu-header">कमाई एवं विज्ञापन (Monetization)</li>
         <li class="menu-item">
