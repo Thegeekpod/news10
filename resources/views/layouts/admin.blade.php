@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'एडमिन पैनल') — {{ $globalSettings['site_name'] ?? 'भारत समाचार' }}</title>
+    <title>@yield('title', 'Admin Panel') — {{ $globalSettings['site_name'] ?? 'Bharat Samachar' }}</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -424,67 +424,67 @@
     <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
         <span class="brand-icon">🇮🇳</span>
         <div>
-            <span class="brand-title">{{ $globalSettings['site_name'] ?? 'भारत समाचार' }}</span>
+            <span class="brand-title">{{ $globalSettings['site_name'] ?? 'Bharat Samachar' }}</span>
             <span class="brand-sub">Admin Control Center</span>
         </div>
     </a>
 
     <ul class="sidebar-menu">
-        <li class="menu-header">मुख्य मेन्यू</li>
+        <li class="menu-header">Main Menu</li>
         <li class="menu-item">
             <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <i class="fa-solid fa-gauge-high"></i> डैशबोर्ड (Dashboard)
+                <i class="fa-solid fa-gauge-high"></i> Dashboard
             </a>
         </li>
 
-        <li class="menu-header">सामग्री प्रबंधन (Content)</li>
+        <li class="menu-header">Content Management</li>
         <li class="menu-item">
             <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-newspaper"></i> खबरें (All Posts)
+                <i class="fa-solid fa-newspaper"></i> All Posts
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('admin.posts.create') }}">
-                <i class="fa-solid fa-square-plus"></i> नई खबर जोड़ें (Add Post)
+                <i class="fa-solid fa-square-plus"></i> Add Post
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-layer-group"></i> श्रेणियां (Categories)
+                <i class="fa-solid fa-layer-group"></i> Categories
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('admin.tags.index') }}" class="{{ request()->routeIs('admin.tags.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-tags"></i> टैग्स (News Tags)
+                <i class="fa-solid fa-tags"></i> Tags
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('admin.tickers.index') }}" class="{{ request()->routeIs('admin.tickers.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-bolt"></i> ब्रेकिंग न्यूज़ (Breaking Tickers)
+                <i class="fa-solid fa-bolt"></i> Breaking Tickers
             </a>
         </li>
 
-        <li class="menu-header">कमाई एवं विज्ञापन (Monetization)</li>
+        <li class="menu-header">Monetization</li>
         <li class="menu-item">
             <a href="{{ route('admin.ads.index') }}" class="{{ request()->routeIs('admin.ads.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-rectangle-ad"></i> विज्ञापन प्रबंधक (Ads)
+                <i class="fa-solid fa-rectangle-ad"></i> Ads Manager
             </a>
         </li>
 
-        <li class="menu-header">प्रशासन (Administration)</li>
+        <li class="menu-header">Administration</li>
         <li class="menu-item">
             <a href="{{ route('admin.subscribers.index') }}" class="{{ request()->routeIs('admin.subscribers.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-envelope-open-text"></i> सब्सक्राइबर्स (Subscribers)
+                <i class="fa-solid fa-envelope-open-text"></i> Subscribers
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-sliders"></i> वेबसाइट सेटिंग्स (Settings)
+                <i class="fa-solid fa-sliders"></i> Settings
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('admin.profile.edit') }}" class="{{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-user-gear"></i> एडमिन प्रोफाइल (Profile)
+                <i class="fa-solid fa-user-gear"></i> Profile
             </a>
         </li>
     </ul>
@@ -493,7 +493,7 @@
         <form action="{{ route('admin.logout') }}" method="POST">
             @csrf
             <button type="submit" style="width: 100%; background: #dc2626; color: #fff; border: none; padding: 9px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <i class="fa-solid fa-right-from-bracket"></i> लॉगआउट
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
             </button>
         </form>
     </div>
@@ -505,12 +505,12 @@
     <header class="admin-header">
         <div class="header-left">
             <button class="sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
-            <h2 style="font-size: 18px; font-weight: 700; color: #0f172a;">@yield('page_title', 'कंट्रोल पैनल')</h2>
+            <h2 style="font-size: 18px; font-weight: 700; color: #0f172a;">@yield('page_title', 'Control Panel')</h2>
         </div>
 
         <div class="header-right">
             <a href="{{ route('home') }}" target="_blank" class="view-site-btn">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> वेबसाइट देखें
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Site
             </a>
 
             <div class="admin-user-pill">
@@ -519,7 +519,7 @@
                 </div>
                 <div>
                     <div>{{ Auth::user()->name ?? 'Admin' }}</div>
-                    <div style="font-size: 11px; color: #64748b; font-weight: 500;">मुख्य संपादक</div>
+                    <div style="font-size: 11px; color: #64748b; font-weight: 500;">Chief Editor</div>
                 </div>
             </div>
         </div>

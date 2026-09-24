@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'खबरें प्रबंधन')
-@section('page_title', 'सभी समाचार (Manage News Posts)')
+@section('title', 'Manage News Posts')
+@section('page_title', 'All News Posts')
 
 @section('content')
 
@@ -10,24 +10,24 @@
     <div class="card-body" style="padding: 16px 20px;">
         <form action="{{ route('admin.posts.index') }}" method="GET" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
             <div style="display: flex; gap: 10px; flex: 1; min-width: 280px; max-width: 600px;">
-                <input type="text" name="search" class="form-control" placeholder="शीर्षक या मुख्य शब्द से खोजें..." value="{{ request('search') }}" />
+                <input type="text" name="search" class="form-control" placeholder="Search by title or keyword..." value="{{ request('search') }}" />
                 <select name="category_id" class="form-select" style="max-width: 180px;">
-                    <option value="">सभी श्रेणियां</option>
+                    <option value="">All Categories</option>
                     @foreach($categories as $cat)
                         <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                     @endforeach
                 </select>
                 <select name="status" class="form-select" style="max-width: 140px;">
-                    <option value="">सभी स्थिति</option>
-                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>प्रकाशित (Published)</option>
-                    <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>ड्राफ्ट (Draft)</option>
+                    <option value="">All Statuses</option>
+                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Published</option>
+                    <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>Draft</option>
                 </select>
-                <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-filter"></i> फ़िल्टर</button>
+                <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-filter"></i> Filter</button>
             </div>
 
             <div>
                 <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i> नई खबर जोड़ें
+                    <i class="fa-solid fa-plus"></i> Add New Post
                 </a>
             </div>
         </form>
@@ -42,14 +42,14 @@
                 <thead>
                     <tr>
                         <th style="width: 50px;">#</th>
-                        <th>थंबनेल</th>
-                        <th>शीर्षक</th>
-                        <th>श्रेणी (Category)</th>
-                        <th>फ्लैग्स (Flags)</th>
-                        <th>व्यूज (Views)</th>
-                        <th>स्थिति (Status)</th>
-                        <th>दिनांक</th>
-                        <th style="text-align: right;">कार्रवाई</th>
+                        <th>Thumbnail</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Flags</th>
+                        <th>Views</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th style="text-align: right;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +64,7 @@
                                     {{ $post->title }}
                                 </div>
                                 <div style="font-size: 11px; color: #94a3b8; margin-top: 2px;">
-                                    लेखक: {{ $post->author ? $post->author->name : 'N/A' }}
+                                    Author: {{ $post->author ? $post->author->name : 'N/A' }}
                                 </div>
                             </td>
                             <td>
@@ -73,19 +73,19 @@
                                         {{ $post->category->name }}
                                     </span>
                                 @else
-                                    <span class="badge badge-warning">अवर्गीकृत</span>
+                                    <span class="badge badge-warning">Uncategorized</span>
                                 @endif
                             </td>
                             <td>
                                 <div style="display: flex; gap: 4px; flex-wrap: wrap;">
                                     @if($post->is_breaking)
-                                        <span class="badge badge-danger" title="Breaking News">⚡ ब्रेकिंग</span>
+                                        <span class="badge badge-danger" title="Breaking News">⚡ Breaking</span>
                                     @endif
                                     @if($post->is_featured)
-                                        <span class="badge badge-warning" title="Featured">⭐ खास</span>
+                                        <span class="badge badge-warning" title="Featured">⭐ Featured</span>
                                     @endif
                                     @if($post->is_trending)
-                                        <span class="badge badge-info" title="Trending">🔥 ट्रेंडिंग</span>
+                                        <span class="badge badge-info" title="Trending">🔥 Trending</span>
                                     @endif
                                 </div>
                             </td>
@@ -96,7 +96,7 @@
                                 <form action="{{ route('admin.posts.toggleStatus', $post->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     <button type="submit" class="badge {{ $post->status === 'published' ? 'badge-success' : 'badge-warning' }}" style="border: none; cursor: pointer;">
-                                        {{ $post->status === 'published' ? 'प्रकाशित' : 'ड्राफ्ट' }}
+                                        {{ $post->status === 'published' ? 'Published' : 'Draft' }}
                                     </button>
                                 </form>
                             </td>
@@ -105,16 +105,16 @@
                             </td>
                             <td style="text-align: right;">
                                 <div style="display: flex; gap: 6px; justify-content: flex-end;">
-                                    <a href="{{ route('post.show', $post->slug) }}" target="_blank" class="btn btn-outline btn-sm" title="फ्रंटएंड पर देखें">
+                                    <a href="{{ route('post.show', $post->slug) }}" target="_blank" class="btn btn-outline btn-sm" title="View on Frontend">
                                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                     </a>
-                                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary btn-sm" title="एडिट करें">
+                                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary btn-sm" title="Edit">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('क्या आप वाकई इस खबर को हटाना चाहते हैं?');" style="display: inline;">
+                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" title="डिलीट करें">
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
@@ -124,7 +124,7 @@
                     @empty
                         <tr>
                             <td colspan="9" style="text-align: center; color: #64748b; padding: 40px;">
-                                कोई खबर नहीं मिली।
+                                No news posts found.
                             </td>
                         </tr>
                     @endforelse
