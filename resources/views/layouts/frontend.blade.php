@@ -75,7 +75,23 @@
     <span class="ticker-label">⚡ ताज़ा</span>
     <div class="ticker-content">
       <div class="ticker-inner" id="ticker">
-        @if(isset($globalBreakingPosts) && $globalBreakingPosts->count() > 0)
+        @if(isset($globalBreakingTickers) && $globalBreakingTickers->count() > 0)
+          @foreach($globalBreakingTickers as $ticker)
+            @if($ticker->link_url)
+                <a href="{{ $ticker->link_url }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $ticker->ticker_text }}</a>
+            @else
+                <span class="ticker-item">{{ $ticker->ticker_text }}</span>
+            @endif
+          @endforeach
+          <!-- duplicate for seamless loop -->
+          @foreach($globalBreakingTickers as $ticker)
+            @if($ticker->link_url)
+                <a href="{{ $ticker->link_url }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $ticker->ticker_text }}</a>
+            @else
+                <span class="ticker-item">{{ $ticker->ticker_text }}</span>
+            @endif
+          @endforeach
+        @elseif(isset($globalBreakingPosts) && $globalBreakingPosts->count() > 0)
           @foreach($globalBreakingPosts as $bPost)
             <a href="{{ route('post.show', $bPost->slug) }}" class="ticker-item" style="color:inherit; text-decoration:none;">{{ $bPost->title }}</a>
           @endforeach
