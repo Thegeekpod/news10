@@ -89,23 +89,26 @@
                         </select>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 12px; margin: 20px 0; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600;">
-                            <input type="checkbox" name="is_breaking" value="1" {{ old('is_breaking', $post->is_breaking) ? 'checked' : '' }} />
-                            <span>⚡ ब्रेकिंग न्यूज़ (Breaking Ticker)</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600;">
-                            <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $post->is_featured) ? 'checked' : '' }} />
-                            <span>⭐ मुख्य आकर्षण (Featured Story)</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600;">
-                            <input type="checkbox" name="is_trending" value="1" {{ old('is_trending', $post->is_trending) ? 'checked' : '' }} />
-                            <span>🔥 ट्रेंडिंग सूची (Trending)</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600;">
-                            <input type="checkbox" name="is_editor_pick" value="1" {{ old('is_editor_pick', $post->is_editor_pick) ? 'checked' : '' }} />
-                            <span>📌 संपादक की पसंद (Editor's Pick)</span>
-                        </label>
+                    <div style="margin: 20px 0;">
+                        <label style="display: block; font-size: 14px; font-weight: 700; color: #f8fafc; margin-bottom: 12px; background: #1e293b; padding: 8px 12px; border-radius: 6px;">Article Placement Settings (নিবন্ধ স্থাপনের সেটিংস)</label>
+                        <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600; color: #1e293b;">
+                                <input type="checkbox" name="is_breaking" value="1" {{ old('is_breaking', $post->is_breaking) ? 'checked' : '' }} style="width: 16px; height: 16px; accent-color: #6366f1;" />
+                                <span>Show in Breaking Ticker (ব্রেকিং নিউজ টিকারে দেখান)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600; color: #1e293b;">
+                                <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $post->is_featured) ? 'checked' : '' }} style="width: 16px; height: 16px; accent-color: #6366f1;" />
+                                <span>Show as Lead News (হোমপেজে ভিডিওর পাশে প্রধান সংবাদে দেখান)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600; color: #1e293b;">
+                                <input type="checkbox" name="is_trending" value="1" {{ old('is_trending', $post->is_trending) ? 'checked' : '' }} style="width: 16px; height: 16px; accent-color: #6366f1;" />
+                                <span>Show in Popular (সাইডবারে সবচেয়ে জনপ্রিয় সংবাদে দেখান)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 600; color: #1e293b;">
+                                <input type="checkbox" name="is_editor_pick" value="1" {{ old('is_editor_pick', $post->is_editor_pick) ? 'checked' : '' }} style="width: 16px; height: 16px; accent-color: #6366f1;" />
+                                <span>📌 संपादक की पसंद (Editor's Pick)</span>
+                            </label>
+                        </div>
                     </div>
 
                     <div style="display: flex; gap: 10px;">
