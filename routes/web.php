@@ -27,6 +27,38 @@ Route::get('/news/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
+Route::get('/api/stocks', function () {
+    return \Illuminate\Support\Facades\Cache::remember('market_stocks_v2', 15, function () {
+        try {
+            $symbols = '^NSEI,^BSESN,RELIANCE.NS,TCS.NS,HDFCBANK.NS,BHARTIARTL.NS,ICICIBANK.NS,INFY.NS,ITC.NS,SBI.NS,L&TFH.NS';
+            $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
+            $client = new \GuzzleHttp\Client(['cookies' => $cookieJar, 'verify' => false]);
+            
+            // Step 1: get cookie
+            $client->get('https://fc.yahoo.com', [
+                'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'],
+                'http_errors' => false
+            ]);
+            
+            // Step 2: get crumb
+            $crumbRes = $client->get('https://query1.finance.yahoo.com/v1/test/getcrumb', [
+                'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)']
+            ]);
+            $crumb = (string) $crumbRes->getBody();
+            
+            // Step 3: fetch data with crumb
+            $encodedSymbols = urlencode($symbols);
+            $quoteRes = $client->get("https://query1.finance.yahoo.com/v7/finance/quote?symbols={$encodedSymbols}&crumb={$crumb}", [
+                'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)']
+            ]);
+            
+            return json_decode((string)$quoteRes->getBody(), true);
+        } catch (\Exception $e) {}
+        return ['quoteResponse' => ['result' => []]];
+    });
+})->name('api.stocks');
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Authentication Routes
