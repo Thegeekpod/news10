@@ -159,6 +159,9 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <button class="btn-subscribe" id="subscribe-btn" onclick="document.querySelector('.newsletter-section')?.scrollIntoView({behavior: 'smooth'})">🔔 सदस्यता लें</button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
 
@@ -174,9 +177,6 @@
   <!-- Navbar -->
   <nav class="navbar" aria-label="Main Navigation">
     <div class="container">
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
       <ul class="nav-list" id="nav-list">
         <li class="nav-item"><a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">🏠 होम</a></li>
         @if(isset($globalCategories))

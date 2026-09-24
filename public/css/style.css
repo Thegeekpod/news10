@@ -1239,7 +1239,12 @@ img { display: block; width: 100%; object-fit: cover; }
   .nav-list           { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark); padding: 10px 0; z-index: 999; }
   .nav-list.open      { display: flex; }
   .nav-link           { border-bottom: 1px solid rgba(255,255,255,.06); }
-  .hamburger          { display: flex; }
+  .hamburger          { display: flex; background: transparent; border: none; padding: 4px; outline: none; }
+  .hamburger span     { background: var(--dark-2); }
+  .btn-subscribe      { padding: 6px 12px; font-size: 0.8rem; white-space: nowrap; }
+  .header-actions     { gap: 8px; }
+  .logo-tagline       { display: none; }
+  .logo-hindi         { font-size: 1.3rem; line-height: 1.2; }
   .news-grid-3        { grid-template-columns: repeat(2, 1fr); }
   .news-grid-4        { grid-template-columns: repeat(2, 1fr); }
   .video-grid         { grid-template-columns: repeat(2, 1fr); }
