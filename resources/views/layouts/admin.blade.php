@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Panel') — {{ $globalSettings['site_name'] ?? 'Bharat Samachar' }}</title>
+    <title>@yield('title', 'Admin Panel') — {{ $globalSettings['site_name'] ?? 'News 10' }}</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,9 +17,9 @@
         :root {
             --sidebar-bg: #0f172a;
             --sidebar-hover: #1e293b;
-            --sidebar-active: #c1121f;
-            --primary: #c1121f;
-            --primary-hover: #a50e1a;
+            --sidebar-active: #e60000;
+            --primary: #e60000;
+            --primary-hover: #b80000;
             --bg-body: #f8fafc;
             --text-dark: #0f172a;
             --text-muted: #64748b;
@@ -422,9 +422,9 @@
 <!-- ════ Sidebar ════ -->
 <aside class="admin-sidebar" id="adminSidebar">
     <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
-        <span class="brand-icon">🇮🇳</span>
+        <img src="{{ asset('logo.webp') }}" alt="TV NEWS 10 HINDI" style="height:38px; width:auto; background:#ffffff; padding:2px 5px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.25);" />
         <div>
-            <span class="brand-title">{{ $globalSettings['site_name'] ?? 'Bharat Samachar' }}</span>
+            <span class="brand-title">TV NEWS 10</span>
             <span class="brand-sub">Admin Control Center</span>
         </div>
     </a>
@@ -485,6 +485,11 @@
         <li class="menu-item">
             <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-sliders"></i> Settings
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.sitemap.index') }}" class="{{ request()->routeIs('admin.sitemap.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-sitemap"></i> Sitemap Manager
             </a>
         </li>
         <li class="menu-item">

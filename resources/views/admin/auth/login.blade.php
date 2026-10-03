@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>एडमिन लॉगिन | भारत समाचार</title>
+    <title>एडमिन लॉगिन | News 10</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,7 +100,7 @@
 
         .btn-submit {
             width: 100%;
-            background: #c1121f;
+            background: #e60000;
             color: #ffffff;
             border: none;
             padding: 13px;
@@ -113,7 +113,7 @@
         }
 
         .btn-submit:hover {
-            background: #a50e1a;
+            background: #b80000;
         }
 
         .alert-error {
@@ -128,24 +128,17 @@
             gap: 10px;
         }
 
-        .demo-credentials {
-            margin-top: 24px;
-            padding: 14px;
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 8px;
-            font-size: 12.5px;
-            color: #475569;
-            line-height: 1.5;
-        }
+
     </style>
 </head>
 <body>
 
 <div class="login-card">
     <div class="brand-header">
-        <div class="brand-icon">🇮🇳</div>
-        <h1 class="brand-title">भारत समाचार</h1>
+        <div style="margin-bottom:12px;">
+            <img src="{{ asset('logo.webp') }}" alt="TV NEWS 10 HINDI" style="height:64px; width:auto; object-fit:contain;" />
+        </div>
+        <h1 class="brand-title">TV NEWS 10 HINDI</h1>
         <p class="brand-subtitle">एडमिन कंट्रोल पैनल लॉगिन (Admin Login)</p>
     </div>
 
@@ -170,7 +163,7 @@
             <label class="form-label" for="email">ईमेल पता (Email Address)</label>
             <div class="input-group">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="email" id="email" name="email" class="form-control" value="{{ old('email', 'admin@bharatsamachar.com') }}" required autofocus />
+                <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="name@example.com" required autofocus />
             </div>
         </div>
 
@@ -178,24 +171,18 @@
             <label class="form-label" for="password">पासवर्ड (Password)</label>
             <div class="input-group">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" id="password" name="password" class="form-control" value="admin123" required />
+                <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required />
             </div>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; font-size: 13.5px; color: #475569;">
             <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
-                <input type="checkbox" name="remember" checked /> मुझे याद रखें
+                <input type="checkbox" name="remember" /> मुझे याद रखें
             </label>
         </div>
 
         <button type="submit" class="btn-submit">लॉगिन करें (Sign In)</button>
     </form>
-
-    <div class="demo-credentials">
-        <strong>🔑 डिफ़ॉल्ट एडमिन क्रेडेंशियल्स (Default Login):</strong><br>
-        ईमेल: <code>admin@bharatsamachar.com</code><br>
-        पासवर्ड: <code>admin123</code>
-    </div>
 </div>
 
 </body>

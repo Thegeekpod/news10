@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', $post->title . ' | ' . ($globalSettings['site_name'] ?? 'भारत समाचार'))
+@section('title', $post->title . ' | ' . ($globalSettings['site_name'] ?? 'News 10'))
 @section('meta_description', $post->meta_description ?? Str::limit(strip_tags($post->summary ?: $post->content), 160))
 @section('meta_keywords', $post->meta_keywords ?? 'hindi news, breaking news, ' . ($post->category ? $post->category->name : ''))
 

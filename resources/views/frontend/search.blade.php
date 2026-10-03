@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', ($tagModel ? ('#' . $tagModel->name) : ('" ' . $query . ' " के खोज परिणाम')) . ' — ' . ($globalSettings['site_name'] ?? 'भारत समाचार'))
+@section('title', ($tagModel ? ('#' . $tagModel->name) : ('" ' . $query . ' " के खोज परिणाम')) . ' — ' . ($globalSettings['site_name'] ?? 'News 10'))
 
 @section('content')
 <div class="breadcrumb-bar" style="background: #f1f5f9; padding: 10px 0; font-size: 13px;">

@@ -25,14 +25,14 @@ class NewsPortalTest extends TestCase
     {
         $response = $this->get('/');
         $response->assertStatus(200);
-        $response->assertSee('भारत समाचार');
+        $response->assertSee('News 10');
     }
 
     public function test_category_page_loads_successfully(): void
     {
         $category = Category::first();
         $this->assertNotNull($category);
-        $response = $this->get('/category/' . $category->slug);
+        $response = $this->get('/category/'.$category->slug);
         $response->assertStatus(200);
         $response->assertSee($category->name);
     }
@@ -41,7 +41,7 @@ class NewsPortalTest extends TestCase
     {
         $post = Post::first();
         $this->assertNotNull($post);
-        $response = $this->get('/news/' . $post->slug);
+        $response = $this->get('/news/'.$post->slug);
         $response->assertStatus(200);
         $response->assertSee($post->title);
     }
@@ -150,5 +150,33 @@ class NewsPortalTest extends TestCase
         $this->assertDatabaseHas('subscribers', [
             'email' => 'testreader@example.com',
         ]);
+    }
+
+    public function test_sitemap_xml_loads_successfully(): void
+    {
+        $response = $this->get('/sitemap.xml');
+        $response->assertStatus(200);
+        $this->assertStringContainsString('<urlset', $response->getContent());
+        $this->assertStringContainsString('http', $response->getContent());
+    }
+
+    public function test_admin_can_access_sitemap_manager(): void
+    {
+        $admin = User::where('is_admin', true)->first();
+        $this->actingAs($admin);
+
+        $response = $this->get('/admin/sitemap');
+        $response->assertStatus(200);
+        $response->assertSee('साइटमैप प्रबंधक');
+    }
+
+    public function test_admin_can_generate_sitemap(): void
+    {
+        $admin = User::where('is_admin', true)->first();
+        $this->actingAs($admin);
+
+        $response = $this->post('/admin/sitemap/generate');
+        $response->assertRedirect('/admin/sitemap');
+        $response->assertSessionHas('success');
     }
 }

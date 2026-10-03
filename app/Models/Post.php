@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\SitemapService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -42,6 +43,23 @@ class Post extends Model
             'views_count' => 'integer',
             'published_at' => 'datetime',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            try {
+                app(SitemapService::class)->generateFile();
+            } catch (\Throwable $e) {
+            }
+        });
+
+        static::deleted(function (): void {
+            try {
+                app(SitemapService::class)->generateFile();
+            } catch (\Throwable $e) {
+            }
+        });
     }
 
     public function category(): BelongsTo
@@ -85,8 +103,10 @@ class Post extends Model
             if (str_starts_with($this->featured_image, 'http')) {
                 return $this->featured_image;
             }
-            return asset('storage/' . $this->featured_image);
+
+            return asset('storage/'.$this->featured_image);
         }
-        return 'https://picsum.photos/800/450?random=' . $this->id;
+
+        return 'https://picsum.photos/800/450?random='.$this->id;
     }
 }

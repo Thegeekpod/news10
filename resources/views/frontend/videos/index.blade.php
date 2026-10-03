@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Video News - ' . ($globalSettings['site_name'] ?? 'Bharat Samachar'))
+@section('title', 'Video News - ' . ($globalSettings['site_name'] ?? 'News 10'))
 @section('meta_description', 'Latest video news and updates')
 
 @section('content')

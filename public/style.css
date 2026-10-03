@@ -1,5 +1,5 @@
 /* ============================================================
-   BHARAT SAMACHAR — Hindi News Portal CSS
+   NEWS 10 — Hindi News Portal CSS
    Custom CSS | No Framework
    ============================================================ */
 
@@ -8,13 +8,13 @@
 
 /* ── CSS Variables ────────────────────────────────────────── */
 :root {
-  --red:         #c0392b;
-  --red-dark:    #96281b;
-  --red-light:   #e74c3c;
-  --orange:      #e67e22;
-  --saffron:     #ff6600;
-  --navy:        #1a2342;
-  --navy-light:  #243060;
+  --red:         #e60000;
+  --red-dark:    #b80000;
+  --red-light:   #ff2a2a;
+  --orange:      #ff3b30;
+  --saffron:     #ff6b00;
+  --navy:        #0f172a;
+  --navy-light:  #1e293b;
   --dark:        #111827;
   --dark-2:      #1f2937;
   --dark-3:      #374151;
@@ -239,21 +239,40 @@ img { display: block; width: 100%; object-fit: cover; }
 }
 
 /* Logo */
-.logo { display: flex; align-items: center; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.site-logo-img {
+  height: 52px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(230,0,0,.2));
+  transition: var(--transition);
+}
+.logo:hover .site-logo-img {
+  transform: scale(1.04);
+}
+.footer-logo .site-logo-img {
+  height: 48px;
+  background: #ffffff;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
 .logo-icon {
   width: 50px; height: 50px;
-  background: linear-gradient(135deg, var(--red), var(--orange));
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.6rem;
-  box-shadow: 0 4px 12px rgba(192,57,43,.35);
+  box-shadow: 0 4px 12px rgba(230,0,0,.35);
 }
 .logo-text { display: flex; flex-direction: column; }
 .logo-hindi {
   font-size: 1.55rem;
   font-weight: 900;
   line-height: 1;
-  background: linear-gradient(135deg, var(--red), var(--orange));
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -264,7 +283,7 @@ img { display: block; width: 100%; object-fit: cover; }
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--gray);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Header Ad Banner */

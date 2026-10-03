@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label class="form-label" for="site_name">वेबसाइट का नाम (Site Name)</label>
-                    <input type="text" id="site_name" name="site_name" class="form-control" value="{{ old('site_name', $settings['site_name'] ?? 'भारत समाचार') }}" required />
+                    <input type="text" id="site_name" name="site_name" class="form-control" value="{{ old('site_name', $settings['site_name'] ?? 'News 10') }}" required />
                 </div>
 
                 <div class="form-group">

@@ -1,5 +1,5 @@
 /* ============================================================
-   BHARAT SAMACHAR — Detail / Article Page CSS
+   NEWS 10 — Detail / Article Page CSS
    Extends style.css | Custom CSS
    ============================================================ */
 
@@ -131,7 +131,7 @@
 }
 .meta-item i { color: var(--red); }
 .read-time {
-  background: rgba(192,57,43,.08);
+  background: rgba(230,0,0,.08);
   color: var(--red);
   padding: 4px 10px;
   border-radius: 20px;
@@ -233,7 +233,7 @@
 
 /* Highlight / Blockquote */
 .article-highlight {
-  background: linear-gradient(135deg, rgba(192,57,43,.04), rgba(230,126,34,.06));
+  background: linear-gradient(135deg, rgba(230,0,0,.04), rgba(230,126,34,.06));
   border-left: 5px solid var(--red);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   padding: 24px 24px 20px 28px;
@@ -382,7 +382,7 @@
   display: flex;
   gap: 20px;
   padding: 24px 32px;
-  background: linear-gradient(135deg, rgba(192,57,43,.04), rgba(230,126,34,.04));
+  background: linear-gradient(135deg, rgba(230,0,0,.04), rgba(230,126,34,.04));
   border-top: 1px solid var(--gray-pale);
   border-bottom: 1px solid var(--gray-pale);
   align-items: flex-start;
@@ -474,12 +474,12 @@
   min-width: 80px;
 }
 .reaction-btn:hover {
-  background: rgba(192,57,43,.06);
+  background: rgba(230,0,0,.06);
   border-color: var(--red);
   transform: translateY(-3px);
 }
 .reaction-btn.reacted {
-  background: rgba(192,57,43,.1);
+  background: rgba(230,0,0,.1);
   border-color: var(--red);
   transform: scale(1.08);
 }
@@ -585,7 +585,7 @@
   align-items: center;
   gap: 6px;
 }
-.comment-submit:hover { box-shadow: 0 4px 14px rgba(192,57,43,.4); transform: translateY(-1px); }
+.comment-submit:hover { box-shadow: 0 4px 14px rgba(230,0,0,.4); transform: translateY(-1px); }
 
 /* Comment List */
 .comment-list { display: flex; flex-direction: column; gap: 0; }
@@ -621,7 +621,7 @@
   border-radius: 10px;
   font-family: var(--font-en);
   font-weight: 700;
-  background: rgba(192,57,43,.1);
+  background: rgba(230,0,0,.1);
   color: var(--red);
 }
 .comment-badge.mod { background: rgba(22,163,74,.12); color: var(--green); }
@@ -657,7 +657,7 @@
   font-family: var(--font-en);
 }
 .cmt-like:hover   { color: var(--green); background: rgba(22,163,74,.08); }
-.cmt-dislike:hover{ color: var(--red);   background: rgba(192,57,43,.08); }
+.cmt-dislike:hover{ color: var(--red);   background: rgba(230,0,0,.08); }
 .cmt-reply:hover  { color: var(--blue);  background: rgba(37,99,235,.08); }
 .cmt-like.clicked { color: var(--green) !important; }
 
@@ -692,7 +692,7 @@
 .load-more-comments:hover:not(:disabled) {
   border-color: var(--red);
   color: var(--red);
-  background: rgba(192,57,43,.04);
+  background: rgba(230,0,0,.04);
 }
 .load-more-comments:disabled { opacity: .6; cursor: default; }
 
@@ -749,7 +749,7 @@
   cursor: pointer;
 }
 .toc-item:hover, .toc-item.active {
-  background: rgba(192,57,43,.06);
+  background: rgba(230,0,0,.06);
   color: var(--red);
   border-left-color: var(--red);
   padding-left: 16px;
@@ -788,7 +788,7 @@
   cursor: pointer;
   transition: var(--transition);
 }
-.nl-mini-form button:hover { box-shadow: 0 4px 14px rgba(192,57,43,.35); }
+.nl-mini-form button:hover { box-shadow: 0 4px 14px rgba(230,0,0,.35); }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 1024px) {

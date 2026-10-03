@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BreakingTickerController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
@@ -14,6 +15,11 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\Frontend\SitemapController;
+use App\Http\Controllers\VideoController;
+use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\CookieJar;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,56 +31,58 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('/news/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::get('/videos', [\App\Http\Controllers\Frontend\VideoController::class, 'index'])->name('videos.index');
+Route::get('/videos', [App\Http\Controllers\Frontend\VideoController::class, 'index'])->name('videos.index');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 Route::get('/api/stocks', function () {
-    return \Illuminate\Support\Facades\Cache::remember('market_stocks_v2', 15, function () {
+    return Cache::remember('market_stocks_v2', 15, function () {
         try {
             $symbols = '^NSEI,^BSESN,RELIANCE.NS,TCS.NS,HDFCBANK.NS,BHARTIARTL.NS,ICICIBANK.NS,INFY.NS,ITC.NS,SBI.NS,L&TFH.NS';
-            
+
             // Cache crumb and cookies for 1 hour to prevent IP block
-            $yahooAuth = \Illuminate\Support\Facades\Cache::remember('yahoo_auth', 3600, function() {
-                $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
-                $client = new \GuzzleHttp\Client(['cookies' => $cookieJar, 'verify' => false]);
-                
+            $yahooAuth = Cache::remember('yahoo_auth', 3600, function () {
+                $cookieJar = new CookieJar;
+                $client = new Client(['cookies' => $cookieJar, 'verify' => false]);
+
                 $client->get('https://fc.yahoo.com', [
                     'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'],
-                    'http_errors' => false
+                    'http_errors' => false,
                 ]);
-                
+
                 $crumbRes = $client->get('https://query1.finance.yahoo.com/v1/test/getcrumb', [
-                    'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)']
+                    'headers' => ['User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'],
                 ]);
-                
+
                 // Extract cookie string
                 $cookieString = '';
                 foreach ($cookieJar->toArray() as $cookie) {
-                    $cookieString .= $cookie['Name'] . '=' . $cookie['Value'] . '; ';
+                    $cookieString .= $cookie['Name'].'='.$cookie['Value'].'; ';
                 }
-                
+
                 return [
                     'crumb' => (string) $crumbRes->getBody(),
-                    'cookie' => $cookieString
+                    'cookie' => $cookieString,
                 ];
             });
-            
-            $client = new \GuzzleHttp\Client(['verify' => false]);
+
+            $client = new Client(['verify' => false]);
             $encodedSymbols = urlencode($symbols);
-            
+
             $quoteRes = $client->get("https://query1.finance.yahoo.com/v7/finance/quote?symbols={$encodedSymbols}&crumb={$yahooAuth['crumb']}", [
                 'headers' => [
                     'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                    'Cookie' => $yahooAuth['cookie']
-                ]
+                    'Cookie' => $yahooAuth['cookie'],
+                ],
             ]);
-            
-            return json_decode((string)$quoteRes->getBody(), true);
-        } catch (\Exception $e) {}
+
+            return json_decode((string) $quoteRes->getBody(), true);
+        } catch (Exception $e) {
+        }
+
         return ['quoteResponse' => ['result' => []]];
     });
 })->name('api.stocks');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +107,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('posts', AdminPostController::class);
 
     // Video News
-    Route::resource('videos', \App\Http\Controllers\VideoController::class)->except(['show']);
+    Route::resource('videos', VideoController::class)->except(['show']);
 
     // Categories Management
     Route::resource('categories', AdminCategoryController::class)->except(['create', 'show', 'edit']);
@@ -112,8 +120,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('ads', AdController::class)->except(['show']);
 
     // Breaking Tickers
-    Route::post('tickers/{ticker}/toggle-status', [\App\Http\Controllers\Admin\BreakingTickerController::class, 'toggleStatus'])->name('tickers.toggleStatus');
-    Route::resource('tickers', \App\Http\Controllers\Admin\BreakingTickerController::class)->except(['create', 'show', 'edit', 'update']);
+    Route::post('tickers/{ticker}/toggle-status', [BreakingTickerController::class, 'toggleStatus'])->name('tickers.toggleStatus');
+    Route::resource('tickers', BreakingTickerController::class)->except(['create', 'show', 'edit', 'update']);
 
     // Settings
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
@@ -122,6 +130,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     // Subscribers
     Route::get('subscribers', [SubscriberController::class, 'index'])->name('subscribers.index');
     Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])->name('subscribers.destroy');
+
+    // Sitemap Manager
+    Route::get('sitemap', [App\Http\Controllers\Admin\SitemapController::class, 'index'])->name('sitemap.index');
+    Route::post('sitemap/settings', [App\Http\Controllers\Admin\SitemapController::class, 'updateSettings'])->name('sitemap.updateSettings');
+    Route::post('sitemap/generate', [App\Http\Controllers\Admin\SitemapController::class, 'generate'])->name('sitemap.generate');
 
     // Admin Profile
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');

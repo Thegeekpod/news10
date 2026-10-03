@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Create Admin User
         $admin = User::firstOrCreate(
-            ['email' => 'admin@bharatsamachar.com'],
+            ['email' => 'admin@news10.com'],
             [
                 'name' => 'मुख्य संपादक (Chief Editor)',
                 'password' => Hash::make('admin123'),
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
         $tagsData = [
             'नरेंद्र मोदी', 'राहुल गांधी', 'ISRO', 'चंद्रयान-4', 'शेयर बाजार', 'सेंसेक्स',
             'टीम इंडिया', 'T20 वर्ल्ड कप', 'बॉलीवुड', 'AI टेक्नोलॉजी', 'संसद सत्र', 'मानसून 2026',
-            'ईवी गाड़ियां', 'सुप्रीम कोर्ट', 'अर्थव्यवस्था'
+            'ईवी गाड़ियां', 'सुप्रीम कोर्ट', 'अर्थव्यवस्था',
         ];
 
         $tags = [];
@@ -219,7 +219,7 @@ class DatabaseSeeder extends Seeder
             unset($pData['tags']);
 
             $post = Post::create(array_merge($pData, [
-                'slug' => Str::slug($pData['title'], '-', 'hi') ?: 'news-article-' . ($index + 1),
+                'slug' => Str::slug($pData['title'], '-', 'hi') ?: 'news-article-'.($index + 1),
                 'user_id' => $admin->id,
                 'status' => 'published',
                 'published_at' => now()->subHours(rand(1, 48)),
@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
                     $tagIds[] = $tags[$tName]->id;
                 }
             }
-            if (!empty($tagIds)) {
+            if (! empty($tagIds)) {
                 $post->tags()->sync($tagIds);
             }
         }
@@ -247,7 +247,7 @@ class DatabaseSeeder extends Seeder
                 'placement' => 'header_banner',
                 'type' => 'image',
                 'image_path' => 'https://picsum.photos/728/90?random=101',
-                'target_url' => 'https://bharatsamachar.com',
+                'target_url' => 'https://news10.com',
                 'is_active' => true,
             ],
             [
@@ -255,7 +255,7 @@ class DatabaseSeeder extends Seeder
                 'placement' => 'home_middle',
                 'type' => 'image',
                 'image_path' => 'https://picsum.photos/970/120?random=102',
-                'target_url' => 'https://bharatsamachar.com',
+                'target_url' => 'https://news10.com',
                 'is_active' => true,
             ],
             [
@@ -263,7 +263,7 @@ class DatabaseSeeder extends Seeder
                 'placement' => 'sidebar_top',
                 'type' => 'image',
                 'image_path' => 'https://picsum.photos/300/250?random=103',
-                'target_url' => 'https://bharatsamachar.com',
+                'target_url' => 'https://news10.com',
                 'is_active' => true,
             ],
             [
@@ -271,7 +271,7 @@ class DatabaseSeeder extends Seeder
                 'placement' => 'sidebar_bottom',
                 'type' => 'image',
                 'image_path' => 'https://picsum.photos/300/400?random=104',
-                'target_url' => 'https://bharatsamachar.com',
+                'target_url' => 'https://news10.com',
                 'is_active' => true,
             ],
             [
@@ -279,7 +279,7 @@ class DatabaseSeeder extends Seeder
                 'placement' => 'detail_top',
                 'type' => 'image',
                 'image_path' => 'https://picsum.photos/728/120?random=105',
-                'target_url' => 'https://bharatsamachar.com',
+                'target_url' => 'https://news10.com',
                 'is_active' => true,
             ],
             [
@@ -287,7 +287,7 @@ class DatabaseSeeder extends Seeder
                 'placement' => 'category_sidebar',
                 'type' => 'image',
                 'image_path' => 'https://picsum.photos/300/250?random=106',
-                'target_url' => 'https://bharatsamachar.com',
+                'target_url' => 'https://news10.com',
                 'is_active' => true,
             ],
         ];
@@ -298,12 +298,12 @@ class DatabaseSeeder extends Seeder
 
         // 6. Settings
         $settingsData = [
-            'site_name' => 'भारत समाचार',
-            'site_tagline' => 'Bharat Samachar · Sach Ki Awaaz',
-            'site_description' => 'भारत समाचार - देश की सबसे तेज़ हिंदी न्यूज़ वेबसाइट। ताज़ा खबरें, ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन और अंतरराष्ट्रीय समाचार।',
-            'contact_email' => 'contact@bharatsamachar.com',
+            'site_name' => 'News 10',
+            'site_tagline' => 'News 10 · सच की आवाज़',
+            'site_description' => 'News 10 - देश की सबसे तेज़ हिंदी न्यूज़ वेबसाइट। ताज़ा खबरें, ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन और अंतरराष्ट्रीय समाचार।',
+            'contact_email' => 'contact@news10.com',
             'contact_phone' => '+91 11 2345 6789',
-            'contact_address' => 'प्रेस एन्क्लेव, नई दिल्ली - 110001',
+            'contact_address' => 'News 10 मीडिया हाउस, प्रेस एन्क्लेव, नई दिल्ली - 110001',
             'social_facebook' => 'https://facebook.com',
             'social_twitter' => 'https://x.com',
             'social_youtube' => 'https://youtube.com',
@@ -312,8 +312,8 @@ class DatabaseSeeder extends Seeder
             'social_whatsapp' => 'https://whatsapp.com',
             'epaper_url' => '#',
             'ticker_speed' => '30',
-            'footer_about' => 'भारत समाचार देश का अग्रणी और विश्वसनीय हिंदी समाचार पोर्टल है। हम राजनीति, राष्ट्रीय, अंतरराष्ट्रीय, खेल, व्यापार और मनोरंजन जगत की ताज़ा और निष्पक्ष खबरें 24x7 आप तक पहुंचाते हैं।',
-            'copyright_text' => '© 2026 भारत समाचार (Bharat Samachar). सर्वाधिकार सुरक्षित।',
+            'footer_about' => 'News 10 देश का अग्रणी और विश्वसनीय हिंदी समाचार पोर्टल है। हम राजनीति, राष्ट्रीय, अंतरराष्ट्रीय, खेल, व्यापार और मनोरंजन जगत की ताज़ा और निष्पक्ष खबरें 24x7 आप तक पहुंचाते हैं।',
+            'copyright_text' => '© 2026 News 10. सर्वाधिकार सुरक्षित।',
         ];
 
         foreach ($settingsData as $key => $val) {

@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', $category->name . ' — ताज़ा खबरें | ' . ($globalSettings['site_name'] ?? 'भारत समाचार'))
+@section('title', $category->name . ' — ताज़ा खबरें | ' . ($globalSettings['site_name'] ?? 'News 10'))
 @section('meta_description', $category->description ?? ($category->name . ' की ताज़ा खबरें, ब्रेकिंग न्यूज़, विश्लेषण और लाइव अपडेट्स।'))
 
 @push('styles')

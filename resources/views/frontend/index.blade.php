@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', ($globalSettings['site_name'] ?? 'भारत समाचार') . ' | Bharat Samachar — देश की नंबर 1 हिंदी न्यूज़')
+@section('title', ($globalSettings['site_name'] ?? 'News 10') . ' | News 10 — देश की नंबर 1 हिंदी न्यूज़')
 
 @section('content')
 <main>

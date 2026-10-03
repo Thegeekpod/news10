@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('title', ($globalSettings['site_name'] ?? 'भारत समाचार') . ' | Bharat Samachar — देश की नंबर 1 हिंदी न्यूज़')</title>
-  <meta name="description" content="@yield('meta_description', $globalSettings['site_description'] ?? 'भारत समाचार - देश की सबसे तेज़ हिंदी न्यूज़ वेबसाइट। ताज़ा खबरें, ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन और अंतरराष्ट्रीय समाचार।')" />
-  <meta name="keywords" content="@yield('meta_keywords', 'hindi news, hindi samachar, breaking news, bharat samachar, latest news india')" />
+  <title>@yield('title', ($globalSettings['site_name'] ?? 'News 10') . ' | News 10 — देश की नंबर 1 हिंदी न्यूज़')</title>
+  <meta name="description" content="@yield('meta_description', $globalSettings['site_description'] ?? 'News 10 - देश की सबसे तेज़ हिंदी न्यूज़ वेबसाइट। ताज़ा खबरें, ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन और अंतरराष्ट्रीय समाचार।')" />
+  <meta name="keywords" content="@yield('meta_keywords', 'hindi news, hindi samachar, breaking news, news 10, latest news india')" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="@yield('og_title', $globalSettings['site_name'] ?? 'भारत समाचार')" />
+  <meta property="og:title" content="@yield('og_title', $globalSettings['site_name'] ?? 'News 10') - {{ $globalSettings['site_tagline'] ?? 'Sach Ki Awaaz' }}" />
   <meta property="og:description" content="@yield('meta_description', $globalSettings['site_description'] ?? '')" />
-  <meta property="og:image" content="@yield('og_image', asset('images/logo.png'))" />
+  <meta property="og:image" content="@yield('og_image', asset('logo.webp'))" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ url()->current() }}" />
+  <link rel="icon" type="image/webp" href="{{ asset('logo.webp') }}" />
 
   <!-- Font Awesome (CDN) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -38,7 +39,6 @@
 
     <div class="top-bar-right">
       <a href="{{ !empty($globalSettings['epaper_url']) ? $globalSettings['epaper_url'] : '#' }}">ई-पेपर</a>
-      <a href="{{ route('admin.login') }}"><i class="fa-solid fa-lock"></i> एडमिन</a>
       <a href="#">विज्ञापन</a>
       <a href="#">संपर्क</a>
       <div class="social-icons">
@@ -130,11 +130,11 @@
   <div class="header-top">
     <div class="container">
       <!-- Logo -->
-      <a href="{{ route('home') }}" class="logo">
-        <div class="logo-icon">🇮🇳</div>
+      <a href="{{ route('home') }}" class="logo" aria-label="News 10">
+        <img src="{{ asset('logo.webp') }}" alt="News 10" class="site-logo-img" />
         <div class="logo-text">
-          <span class="logo-hindi">{{ $globalSettings['site_name'] ?? 'भारत समाचार' }}</span>
-          <span class="logo-tagline">{{ $globalSettings['site_tagline'] ?? 'Bharat Samachar · Sach Ki Awaaz' }}</span>
+          <span class="logo-hindi">{{ $globalSettings['site_name'] ?? 'News 10' }}</span>
+          <span class="logo-tagline">{{ $globalSettings['site_tagline'] ?? 'Sach Ki Awaaz · Hindi News' }}</span>
         </div>
       </a>
 
@@ -207,14 +207,14 @@
 
       <!-- Brand -->
       <div class="footer-brand">
-        <a href="{{ route('home') }}" class="logo">
-          <div class="logo-icon" style="width:40px;height:40px;font-size:1.2rem">🇮🇳</div>
+        <a href="{{ route('home') }}" class="logo footer-logo" aria-label="News 10">
+          <img src="{{ asset('logo.webp') }}" alt="News 10" class="site-logo-img footer-logo-img" />
           <div class="logo-text">
-            <span class="logo-hindi">{{ $globalSettings['site_name'] ?? 'भारत समाचार' }}</span>
-            <span class="logo-tagline">{{ $globalSettings['site_tagline'] ?? 'Bharat Samachar' }}</span>
+            <span class="logo-hindi">{{ $globalSettings['site_name'] ?? 'News 10' }}</span>
+            <span class="logo-tagline">{{ $globalSettings['site_tagline'] ?? 'Sach Ki Awaaz · Hindi News' }}</span>
           </div>
         </a>
-        <p class="footer-about">{{ $globalSettings['footer_about'] ?? 'भारत समाचार देश की सबसे विश्वसनीय हिंदी न्यूज़ वेबसाइट है। हम आपको 24×7 ताज़ा, निष्पक्ष और सटीक खबरें प्रदान करते हैं।' }}</p>
+        <p class="footer-about">{{ $globalSettings['footer_about'] ?? 'News 10 देश की सबसे विश्वसनीय हिंदी न्यूज़ वेबसाइट है। हम आपको 24×7 ताज़ा, निष्पक्ष और सटीक खबरें प्रदान करते हैं।' }}</p>
         <div class="footer-social">
           @if(!empty($globalSettings['social_facebook']))
             <a href="{{ $globalSettings['social_facebook'] }}" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -239,7 +239,7 @@
         <span class="footer-heading">समाचार श्रेणी</span>
         <div class="footer-links">
           @if(isset($globalCategories))
-            @foreach($globalCategories->take(9) as $fCat)
+            @foreach($globalCategories->take(5) as $fCat)
               <a href="{{ route('category.show', $fCat->slug) }}">{{ $fCat->name }}</a>
             @endforeach
           @endif
@@ -253,11 +253,8 @@
           <a href="#">हमारे बारे में</a>
           <a href="#">संपादकीय नीति</a>
           <a href="{{ !empty($globalSettings['epaper_url']) ? $globalSettings['epaper_url'] : '#' }}">ई-पेपर</a>
-          <a href="#">RSS फ़ीड</a>
           <a href="#">विज्ञापन दें</a>
           <a href="{{ route('admin.login') }}">एडमिन लॉगिन</a>
-          <a href="#">Live TV</a>
-          <a href="#">पॉडकास्ट</a>
         </div>
       </div>
 
@@ -266,7 +263,7 @@
         <span class="footer-heading">संपर्क करें</span>
         <div class="footer-contact-item">
           <i class="fa-solid fa-location-dot"></i>
-          <span>{{ $globalSettings['contact_address'] ?? 'भारत समाचार मीडिया हाउस, कनॉट प्लेस, नई दिल्ली — 110001' }}</span>
+          <span>{{ $globalSettings['contact_address'] ?? 'News 10 मीडिया हाउस, कनॉट प्लेस, नई दिल्ली — 110001' }}</span>
         </div>
         <div class="footer-contact-item">
           <i class="fa-solid fa-phone"></i>
@@ -274,7 +271,7 @@
         </div>
         <div class="footer-contact-item">
           <i class="fa-solid fa-envelope"></i>
-          <span>{{ $globalSettings['contact_email'] ?? 'editor@bharatsamachar.in' }}</span>
+          <span>{{ $globalSettings['contact_email'] ?? 'editor@news10.com' }}</span>
         </div>
         <div class="footer-contact-item">
           <i class="fa-solid fa-clock"></i>
@@ -287,7 +284,7 @@
 
   <div class="footer-bottom">
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;width:100%">
-      <p>{{ $globalSettings['copyright_text'] ?? '© 2026 भारत समाचार (Bharat Samachar). सभी अधिकार सुरक्षित।' }}</p>
+      <p>{{ $globalSettings['copyright_text'] ?? '© 2026 News 10. सभी अधिकार सुरक्षित।' }}</p>
       <div class="footer-bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Use</a>
@@ -311,12 +308,12 @@
   <div style="position:relative; width:90%; max-width:450px; background:var(--white, #fff); border-radius:12px; padding:30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
     <button onclick="document.getElementById('subscribeModal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; color:var(--dark, #111); font-size:24px; cursor:pointer;">&times;</button>
     <div style="text-align:center; margin-bottom:20px;">
-        <h2 style="font-size:24px; margin-bottom:10px; color:var(--red, #c0392b);">📧 सदस्यता लें</h2>
+        <h2 style="font-size:24px; margin-bottom:10px; color:var(--red, #e60000);">📧 सदस्यता लें</h2>
         <p style="font-size:15px; color:var(--dark-3, #333);">हमारे न्यूज़लेटर की सदस्यता लें और हर सुबह देश-दुनिया की महत्वपूर्ण खबरें सबसे पहले पाएँ। बिल्कुल निःशुल्क!</p>
     </div>
     <div style="display:flex; flex-direction:column; gap:15px;">
         <input type="email" id="nl-modal-email" placeholder="आपका ईमेल पता लिखें..." style="padding:12px 15px; border:1px solid #ccc; border-radius:6px; font-size:15px; width:100%; outline:none; color: #111; background: #fff;" />
-        <button id="nl-modal-btn" style="padding:12px 15px; background:var(--red, #c0392b); color:#fff; border:none; border-radius:6px; font-size:16px; font-weight:bold; cursor:pointer; width:100%;">सदस्यता लें →</button>
+        <button id="nl-modal-btn" style="padding:12px 15px; background:var(--red, #e60000); color:#fff; border:none; border-radius:6px; font-size:16px; font-weight:bold; cursor:pointer; width:100%;">सदस्यता लें →</button>
     </div>
     <p style="font-size:12px; color:var(--gray, #777); text-align:center; margin-top:15px;">* हम आपकी जानकारी किसी के साथ साझा नहीं करते।</p>
   </div>

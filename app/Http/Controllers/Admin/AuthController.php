@@ -13,6 +13,7 @@ class AuthController extends Controller
         if (Auth::check() && Auth::user()->is_admin) {
             return redirect()->route('admin.dashboard');
         }
+
         return view('admin.auth.login');
     }
 
@@ -28,13 +29,14 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            if (!Auth::user()->is_admin) {
+            if (! Auth::user()->is_admin) {
                 Auth::logout();
+
                 return back()->withErrors(['email' => 'आपके पास एडमिन पैनल का एक्सेस नहीं है।']);
             }
 
             return redirect()->intended(route('admin.dashboard'))
-                ->with('success', 'सफलतापूर्वक लॉगिन हो गया! भारत समाचार एडमिन पैनल में आपका स्वागत है।');
+                ->with('success', 'सफलतापूर्वक लॉगिन हो गया! News 10 एडमिन पैनल में आपका स्वागत है।');
         }
 
         return back()->withErrors([
